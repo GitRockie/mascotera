@@ -1,12 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Mascota } from '../shared/interface';
+import { DataService } from '../shared/data.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-tab2',
+  selector: 'app-home',
   templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  styleUrls: ['tab2.page.css'],
 })
-export class Tab2Page {
 
-  constructor() {}
+export class Tab2Page implements OnInit {
+  mascotaArray = [];
+  constructor(
+    private dataService: DataService
+  ) { }
 
+  ngOnInit() {
+    this.fetchMascota();
+    const mascotaRes = this.dataService.getMascotaList();
+    mascotaRes.snapshotChanges().subscribe(res => {
+      this.mascotaArray = [];
+      res.forEach(item => {
+        const a = item.payload.toJSON();
+        // eslint-disable-next-line @typescript-eslint/dot-notation
+        a['$key'] = item.key;
+        this.mascotaArray.push(a as Mascota);
+      });
+    });
+  }
+
+  fetchMascota() {
+    this.dataService.getMascotaList().valueChanges().subscribe(res => {
+      console.log('Fetched users list!');
+    });
+  }
 }

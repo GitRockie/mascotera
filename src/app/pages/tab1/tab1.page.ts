@@ -1,12 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { DataService } from '../shared/data.service';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-make',
+  templateUrl: './tab1.page.html',
+  styleUrls: ['./tab1.page.scss'],
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
 
-  constructor() {}
+  formEntrada: FormGroup;
 
+  constructor(
+    private dataService: DataService,
+    private router: Router,
+    public fb: FormBuilder
+  ) { }
+
+  ngOnInit() {
+    this.formEntrada = this.fb.group({
+      name: [''],
+      tipo: [''],
+      raza: [''],
+      fnac: Date.now(),
+      obs: [''],
+    });
+  }
+
+  onFormSubmit() {
+    if (!this.formEntrada.valid) {
+      return false;
+    } else {
+      this.dataService.createMascota(this.formEntrada.value).then(res => {
+        this.formEntrada.reset();
+        this.router.navigate(['/tabs']);
+      })
+        .catch(error => console.log(error));
+    }
+  }
 }
