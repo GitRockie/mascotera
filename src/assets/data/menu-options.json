@@ -1,0 +1,24 @@
+[
+    {
+      "icon": "person-circle-outline",
+      "name": "El meu perfill",
+      "redirectTo": "/tab1"
+    },
+    {
+      "icon": "paw-outline",
+      "name": "Mascotes",
+      "redirectTo": "/tab2"
+    },
+    {
+      "icon": "newspaper-outline",
+      "name": "Mascoter@ Info",
+      "redirectTo": "/tab3"
+    },
+
+    {
+      "icon": "settings-outline",
+      "name": "Configuracions",
+      "redirectTo": "/home"
+    }
+
+]

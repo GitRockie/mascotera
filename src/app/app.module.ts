@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -12,12 +13,16 @@ import {provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import {getFirestore, provideFirestore } from '@angular/fire/firestore'
 
 import { AppComponent } from './app.component';
-import { from } from 'rxjs';
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, 
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule, 
+    HttpClientModule,
     provideFirebaseApp( () => initializeApp( environment.firebase )),
     provideFirestore (() => getFirestore())
 
