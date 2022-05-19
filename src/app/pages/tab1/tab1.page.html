@@ -1,17 +1,40 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+<ion-header>
+  <ion-toolbar class="ios hydrated">
+    <ion-title class="ios title-ios hydrated">Añadir Mascota</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<ion-content>
+  <ion-list lines="full">
+    <form [formGroup]="formEntrada" (ngSubmit)="onFormSubmit()">
+      <ion-item>
+        <ion-label position="floating">Nombre:</ion-label>
+        <ion-input formControlName="name" type="text" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Tipo:</ion-label>
+        <ion-input formControlName="tipo" type="text" required>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Raza:</ion-label>
+        <ion-input formControlName="raza" type="text" required>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nacido:</ion-label>
+        <ion-input formControlName="fnac" type="date" required >
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Obs:</ion-label>
+        <ion-input formControlName="obs" type="text" >
+        </ion-input>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" color="primary" shape="" expand="block">Añadir</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-list>
 </ion-content>
