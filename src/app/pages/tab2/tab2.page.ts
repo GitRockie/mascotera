@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Mascota } from '../../models/interface';
-import { DataService } from '../../shared/data.service';
+import { DataService } from '../../services/data.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
