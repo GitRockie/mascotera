@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Mascota } from './interface';
+import { Injectable} from '@angular/core';
+import { Mascota } from '../models/interface';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/compat/database';
+import { rootCertificates } from 'tls';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class DataService {
   dataList: AngularFireList<any>;
   dataRef: AngularFireObject<any>;
