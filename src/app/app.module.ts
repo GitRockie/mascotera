@@ -6,6 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { environment } from '../environments/environment';
 
@@ -20,6 +21,7 @@ import { AppComponent } from './app.component';
   entryComponents: [],
   imports: [
     BrowserModule, 
+    TranslateModule.forRoot(),
     IonicModule.forRoot(), 
     AppRoutingModule, 
     HttpClientModule,
