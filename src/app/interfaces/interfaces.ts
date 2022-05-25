@@ -12,6 +12,8 @@ export interface MenuOpt {
     address: string;
     cp     : number;
     phone  : string;
+    name   : string;
+    avatar? : string;
     email  : string;
     
   }
@@ -19,6 +21,7 @@ export interface MenuOpt {
   export interface Mascota {
     id  : string;
     name: string;
+    avatar? : string;
     tipo: string;
     raza: string;
     fnac: Date;
