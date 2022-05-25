@@ -5,13 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyD8mMBKnWr4jOH4AGAfofwM946Dw4UpcHo",
-    authDomain: "mascotera-49d9f.firebaseapp.com",
-    projectId: "mascotera-49d9f",
-    storageBucket: "mascotera-49d9f.appspot.com",
-    messagingSenderId: "220705378025",
-    appId: "1:220705378025:web:971ed02091b824f81f2a78",
-    measurementId: "G-8EQJSQ48HP"
+    projectId: 'mascotera-7cdde',
+    appId: '1:1088588483767:web:0b0a5ddea50c7d6d4e1132',
+    storageBucket: 'mascotera-7cdde.appspot.com',
+    apiKey: 'AIzaSyDnnhpTXBr-hSsr8G-8jh5qfQhrtVtS3O8',
+    authDomain: 'mascotera-7cdde.firebaseapp.com',
+    messagingSenderId: '1088588483767',
   }
 };
 

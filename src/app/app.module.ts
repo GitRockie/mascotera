@@ -13,6 +13,7 @@ import {provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import {getFirestore, provideFirestore } from '@angular/fire/firestore'
 
 import { AppComponent } from './app.component';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { AppComponent } from './app.component';
     AppRoutingModule, 
     HttpClientModule,
     provideFirebaseApp( () => initializeApp( environment.firebase )),
-    provideFirestore (() => getFirestore())
+    provideFirestore (() => getFirestore()),
+    provideDatabase(() => getDatabase())
 
   
   ],
