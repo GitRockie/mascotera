@@ -15,7 +15,7 @@ export class HomePage implements OnInit {
 
   constructor( private dataService: DataService,
                private menuCtrl: MenuController ) { 
-    this.dataService.getNotes()
+    this.dataService.getUsers()
       .subscribe(res =>{
         console.log( res );
     })

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
 import { collection } from '@firebase/firestore';
+
 import { MenuOpt } from '../interfaces/interfaces';
 
 @Injectable({
@@ -12,9 +13,9 @@ export class DataService {
   constructor( private fireStore: Firestore,
                private http: HttpClient ) { }
 
-  getNotes() {
-    const notesRef = collection( this.fireStore, 'notes' );
-    return collectionData(notesRef);
+  getUsers() {
+    const usersRef = collection( this.fireStore, 'users' );
+    return collectionData(usersRef, { idField: 'id'});
   }
   
   getMenuOpt() {

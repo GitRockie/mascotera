@@ -7,13 +7,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { environment } from '../environments/environment';
-
 import {provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import {getFirestore, provideFirestore } from '@angular/fire/firestore'
 
 import { AppComponent } from './app.component';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
+
+import { environment } from '../environments/environment';
+
+
 
 
 @NgModule({
