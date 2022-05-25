@@ -1,7 +1,7 @@
 [
     {
       "icon": "person-circle-outline",
-      "name": "El meu perfill",
+      "name": "Perfill",
       "redirectTo": "/tab1"
     },
     {
@@ -11,7 +11,7 @@
     },
     {
       "icon": "newspaper-outline",
-      "name": "Mascoter@ Info",
+      "name": "Blog",
       "redirectTo": "/tab3"
     },
 
