@@ -195,8 +195,8 @@
             "prerender": false,
             "ssr": false,
             "browserTarget": "app:build:production",
-            "firebaseProject": "my-project-1500015070572",
-            "firebaseHostingSite": "my-project-1500015070572"
+            "firebaseProject": "mascotas-d4066",
+            "firebaseHostingSite": "mascotas-d4066"
           }
         },
         "ionic-cordova-serve": {

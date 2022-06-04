@@ -1,0 +1,46 @@
+<form [formGroup]="authForm">
+  <ion-item>
+    <ion-label position="stacked">Email</ion-label>
+    <ion-input formControlName="email" type="email" placeholder="Tu email">
+    </ion-input>
+  </ion-item>
+  <ion-item *ngIf="!isPasswordResetPage">
+    <ion-label position="stacked">Password</ion-label>
+    <ion-input
+      formControlName="password"
+      type="password"
+      placeholder="Tu password"
+    >
+    </ion-input>
+  </ion-item>
+  <div *ngIf="this.actionButtonText === 'Registro'" >
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input formControlName="name" type="text" placeholder="Tu nombre">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Direccion</ion-label>
+      <ion-input formControlName="direccion" type="text" placeholder="Tu direccion">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">C. Postal</ion-label>
+      <ion-input formControlName="cp" type="text" placeholder="Tu C.P.">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Telefono</ion-label>
+      <ion-input formControlName="tlf" type="text" placeholder="Tu telefono">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Observaciones</ion-label>
+      <ion-input formControlName="obs" type="text" placeholder="Tus observaciones">
+      </ion-input>
+    </ion-item>
+  </div>
+  <ion-button (click)="submitCredentials(authForm)" expand="block" [disabled]="!authForm.valid">
+    {{ actionButtonText }}
+  </ion-button>
+</form>
