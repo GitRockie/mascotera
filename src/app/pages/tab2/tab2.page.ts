@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-home',
   templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.css'],
+  styleUrls: ['tab2.page.scss'],
 })
 
 export class Tab2Page implements OnInit {

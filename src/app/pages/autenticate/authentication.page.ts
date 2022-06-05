@@ -72,9 +72,10 @@ export class AuthenticationPage implements OnInit {
   async login(email: string, password: string) {
     try {
       await this.auth.login(email, password);
-      // This will give you an error since we don't have the / URL inour routes yet.
-      // No worries, we'll add it soon enough.
+      sessionStorage.setItem('email',email);
       this.router.navigateByUrl('tabs');
+//      this.router.navigate(['tabs']);
+
     } catch (error) {
       console.log(
         `Either we couldn't find your user or there was a problem with the password`
