@@ -21,14 +21,7 @@ const routes: Routes = [
     path: 'reset',
     loadChildren: () => import('./pages/autenticate/authentication.module').then((m) => m.AuthenticationPageModule),
   },
-  {
-    path: 'login',
-    loadChildren: () =>
-      import('./pages/autenticate/authentication.module').then(
-        (m) => m.AuthenticationPageModule
-      ),
-  },
-  { path: '**', redirectTo: '/login' }
+  { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({
