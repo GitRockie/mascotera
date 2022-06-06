@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, collectionData, doc, docData, deleteDoc, runTransaction, Firestore,} from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, doc, docData, deleteDoc, Firestore} from '@angular/fire/firestore';
 import { AuthenticationService } from '../services/authentication.service';
 import { Usuario } from '../models/interface';
 import { map, switchMap } from 'rxjs/operators';
@@ -15,6 +15,8 @@ export class UserService {
   constructor(
     private readonly auth: AuthenticationService,
     private readonly firestore: Firestore
+
+
   ) {}
 
   createUser(usuario: Partial<Usuario>) {

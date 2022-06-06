@@ -16,6 +16,7 @@
   </app-auth-form>
   <ion-button 
     expand="block"
+    size = "small"
     color="warning"
     routerLink="/signup"
     *ngIf="url && url !== 'reset' && url !== 'signup'"
@@ -24,7 +25,8 @@
   </ion-button>
   <ion-button
     expand="block"
-    color="danger"
+    color="tertiary"
+    size="small"
     routerLink="/reset"
     *ngIf="url && url !== 'signup' && url !== 'reset'"
   >

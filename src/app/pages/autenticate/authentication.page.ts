@@ -7,6 +7,8 @@ import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { Capacitor } from '@capacitor/core';
 import { UserService } from 'src/app/services/users.service';
 import { Usuario } from 'src/app/models/interface';
+import { ToastController } from '@ionic/angular';
+
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +30,7 @@ export class AuthenticationPage implements OnInit {
     private readonly router: Router,
     private readonly auth: AuthenticationService,
     private userService: UserService,
+    public toastCtrl: ToastController,
   ) {}
 
 
@@ -37,7 +40,7 @@ export class AuthenticationPage implements OnInit {
     // proper information to the authentication form component.
     // this.url = this.router.url.substr(1);
     this.url = this.router.url.substring(1);
-    console.log('url:', this.url);
+//    console.log('url:', this.url);
     if (this.url === 'signup') {
       this.pageTitle = 'Registrar Usuario';
       this.actionButtonText = 'Registro';
@@ -60,7 +63,6 @@ export class AuthenticationPage implements OnInit {
         this.login(email, password);
         break;
       case 'signup':
-        console.log('Sign Up');
         this.signup(userCredentials);
         break;
       case 'reset':
@@ -74,26 +76,21 @@ export class AuthenticationPage implements OnInit {
       await this.auth.login(email, password);
       sessionStorage.setItem('email',email);
       this.router.navigateByUrl('tabs');
-//      this.router.navigate(['tabs']);
-
     } catch (error) {
-      console.log(
-        `Either we couldn't find your user or there was a problem with the password`
-      );
+      this.presentToast('Usuario o Password INVALIDO/INEXISTENTE');
     }
   }
 
-//  async signup(email: string, password: string) {
-//  async signup(user: Usuario , email: any, password: any ) {
-async signup(user: any) {
+  async signup(user: any) {
     console.log('User:', user);
     try {
       await this.auth.signup(user.email, user.password);
-//      this.takePhoto();
-//      const uSer: Usuario = user;
-      this.userService.createUser(user as Usuario);
-      this.router.navigateByUrl('');
+      if (this.takePhoto(user.nombre)){
+       await this.userService.createUser(user as Usuario);
+       this.router.navigateByUrl('');
+      }
     } catch (error) {
+      this.presentToast('Usuario YA Registrado');
       console.log('Error:', error);
     }
   }
@@ -101,6 +98,7 @@ async signup(user: any) {
   async resetPassword(email: string) {
     try {
       await this.auth.resetPassword(email);
+      await this.presentToast('Password RESETEADO');
       console.log('Email Sent');
       this.router.navigateByUrl('login');
     } catch (error) {
@@ -108,17 +106,21 @@ async signup(user: any) {
     }
   }
 
-  async takePhoto() {
+  async takePhoto(name: string) {
     const options = {
-      resultType: CameraResultType.Uri,
+      format: 'jpeg',
+      quality: 90,
+      saveToGallery: true,
+      resultType: CameraResultType.DataUrl,
+      correctOrientation: true,
     };
+
     const originalPhoto = await Camera.getPhoto(options);
-    const photoInTempStorage = await Filesystem.readFile({
-      path: originalPhoto.path,
-    });
+    const photoInTempStorage = await Filesystem.readFile({ path: originalPhoto.path });
     const date = new Date();
     const time = date.getTime();
-    const fileName = time + '.jpeg';
+    const fileName = name + date as string +'.jpeg';
+
     await Filesystem.writeFile({
       data: photoInTempStorage.data,
       path: fileName,
@@ -130,5 +132,15 @@ async signup(user: any) {
     });
     const photoPath = Capacitor.convertFileSrc(finalPhotoUri.uri);
     console.log(photoPath);
+    return true;
+  }
+  async presentToast(msg: string) {
+    const toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'middle',
+      color: 'danger',
+    });
+    (await toast).present();
   }
 }
