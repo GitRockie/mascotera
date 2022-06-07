@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 import { UserService } from 'src/app/services/users.service';
-import { Usuario } from 'src/app/models/interface';
+import { Usuario, UserPhoto } from 'src/app/models/interface';
+import { PhotoService } from 'src/app/services/photo.service';
+
 
 
 
@@ -22,10 +24,12 @@ export class AuthenticationPage implements OnInit {
   pageTitle = 'Sign In';
   actionButtonText = 'Sign In';
   user: Usuario;
+  photo: any;
 
   constructor(
     private readonly router: Router,
     private readonly auth: AuthenticationService,
+    private photoService: PhotoService,
     private userService: UserService,
   ) {}
 
@@ -81,7 +85,7 @@ export class AuthenticationPage implements OnInit {
     console.log('User:', user);
     try {
       await this.auth.signup(user.email, user.password);
-      this.userService.takePhoto(user.nombre);
+//      this.photo = this.photoService.addNewToGallery();
       await this.userService.createUser(user as Usuario);
       this.router.navigateByUrl('');
     } catch (error) {

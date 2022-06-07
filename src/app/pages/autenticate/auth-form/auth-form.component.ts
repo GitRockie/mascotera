@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Usuario } from 'src/app/models/interface';
-import { UserService } from 'src/app/services/users.service';
+import { PhotoService } from 'src/app/services/photo.service';
 
 @Component({
   selector: 'app-auth-form',
@@ -16,9 +16,11 @@ export class AuthFormComponent implements OnInit {
 
   public authForm: FormGroup;
     user: Usuario ;
+    photo: any ;
+
     constructor(
       private readonly formBuilder: FormBuilder,
-      private userService: UserService,
+      public photoService: PhotoService,
       ) {}
 
   ngOnInit() {
@@ -53,12 +55,9 @@ export class AuthFormComponent implements OnInit {
         cp: authForm.value.cp,
         tlf: authForm.value.tlf,
         obs: authForm.value.obs,
+//        photo: this.photo,
       };
       this.formSubmitted.emit(credentials);
     }
   }
-  takePhoto(name: string){
-    this.userService.takePhoto(name);
-  }
-
 }

@@ -1,12 +1,14 @@
 <form [formGroup]="authForm">
-  <div *ngIf="this.actionButtonText === 'Registro'" >
+  <div *ngIf="this.actionButtonText === 'Registro' && photo" >
     <ion-row>
       <ion-thumbnail class="user-image" >
-        <img src = "/assets/avatar.png " (click)="takePhoto('pepe')">
+        <img [src] = "this.photoService.photos[0].webviewPath" (click)="this.photoService.addNewToGallery()">
       </ion-thumbnail>
     </ion-row>  
   </div>
-
+    <ion-thumbnail class="user-image" *ngIf="!photo">
+      <img src="../../../../assets/avatar.png" (click)="this.photoService.addNewToGallery()">
+  </ion-thumbnail>
   <ion-item>
     <ion-label position="stacked">Email</ion-label>
     <ion-input formControlName="email" type="email" placeholder="Tu email">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/app/models/interface';
+import { Usuario, UserPhoto, } from 'src/app/models/interface';
 import { UserService } from '../../services/users.service';
+import { PhotoService } from 'src/app/services/photo.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -12,7 +13,9 @@ export class Tab3Page implements OnInit {
 
   users: Usuario[];
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    public photoService: PhotoService) { }
 
   ngOnInit() {
     this.userService.getUsers().subscribe((res) => {

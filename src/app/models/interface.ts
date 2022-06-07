@@ -6,7 +6,8 @@ export  interface Usuario {  //usuario /propietario
   cp: number;
   tlf: string;
   email: string;
-  obd: string;
+  photo: string;
+  obs: string;
 }
 
 
@@ -85,4 +86,9 @@ export interface Memories {  //Registo recuerdos (fotos)
   ubicacion: string;
   fecha: Date;
   obs: string;
+}
+
+export interface UserPhoto {
+  filepath: string;
+  webviewPath: string;
 }
