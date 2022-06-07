@@ -1,4 +1,12 @@
 <form [formGroup]="authForm">
+  <div *ngIf="this.actionButtonText === 'Registro'" >
+    <ion-row>
+      <ion-thumbnail class="user-image">
+        <img src="/assets/avatar.png">
+      </ion-thumbnail>
+    </ion-row>  
+  </div>
+
   <ion-item>
     <ion-label position="stacked">Email</ion-label>
     <ion-input formControlName="email" type="email" placeholder="Tu email">

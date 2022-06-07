@@ -1,6 +1,7 @@
 export  interface Usuario {  //usuario /propietario
-//  id: number;
-  name: string;
+  $key: string;
+  id: string;
+  nombre: string;
   direccion: string;
   cp: number;
   tlf: string;

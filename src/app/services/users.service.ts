@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, collectionData, doc, docData, deleteDoc, Firestore} from '@angular/fire/firestore';
-import { AuthenticationService } from '../services/authentication.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Router } from '@angular/router';
 import { Usuario } from '../models/interface';
-import { map, switchMap } from 'rxjs/operators';
-import { User } from '@angular/fire/auth';
+import { ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -11,47 +10,51 @@ import { User } from '@angular/fire/auth';
 
 export class UserService {
 
-  user: Usuario;
   constructor(
-    private readonly auth: AuthenticationService,
-    private readonly firestore: Firestore
+    private firestore: AngularFirestore,
+    private router: Router,
+    private toastCtrl: ToastController,
+  ) { }
 
-
-  ) {}
-
-  createUser(usuario: Partial<Usuario>) {
-    const userId: string = this.auth.getUser().uid;
-    const userCollection = collection(
-      this.firestore,`users`);
-    return addDoc(userCollection, usuario);
+  createUser(user: Usuario) {
+    const id = this.firestore.createId() as string;
+    user.id = id;
+    return this.firestore.collection('users').add(user);
   }
 
-  getUserList() {
-    return this.auth.getUser$().pipe(
-      map(({ uid: userId }: User) =>
-        collection(this.firestore, `users`)
-      ),
-      switchMap((userCollection) =>
-        collectionData(userCollection, { idField: 'id' })
-      )
-    );
+  getUsers() {
+    return this.firestore.collection('users').snapshotChanges();
+  }
+  getUser(id) {
+    return this.firestore.collection('users').doc(id).valueChanges();
   }
 
-  getUserDetail(usuarioId: string) {
-    return this.auth.getUser$().pipe(
-      map(({ uid: userId }: User) =>
-        doc(this.firestore, `users}`)
-      ),
-      switchMap((userDocument) => docData(userDocument))
-    );
+  getUserDoc(id) {
+    return this.firestore
+      .collection('users')
+      .doc(id)
+      .valueChanges();
   }
 
-  deleteUser(usuario: string): Promise<void> {
-    const userId: string = this.auth.getUser().uid;
-    const documentReference = doc(
-      this.firestore,
-      `users`
-    );
-    return deleteDoc(documentReference);
+  updateUser(id, user: Usuario) {
+    this.firestore.collection('users').doc(id).update(user)
+      .then(() => {
+        this.router.navigate(['/tabs/tab3']);
+      }).catch(error => console.log(error));;
   }
+
+  delete(id: string) {
+    alert(id);
+    this.firestore.doc('users/' + id).delete();
+  }
+  async presentToast(msg: string) {
+    const toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'middle',
+      color: 'danger',
+    });
+    (await toast).present();
+  }
+
 }

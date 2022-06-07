@@ -1,46 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../../models/interface';
-import { UserService } from 'src/app/services/users.service';
-import { Observable } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Usuario } from 'src/app/models/interface';
+import { UserService } from '../../services/users.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss'],
+  selector: 'app-todo-list',
+  templateUrl: './tab3.page.html',
+  styleUrls: ['./tab3.page.scss'],
 })
 
 export class Tab3Page implements OnInit {
 
-  public userArray: Usuario;
-  public userId: string;
+  users: Usuario[];
 
-  constructor(
-    private userservice: UserService,
-    private route: ActivatedRoute,
-    private router: Router,
-  ) { }
+  constructor(private userService: UserService) { }
 
-    ngOnInit() {
-      this.fetchUsers();
-      const userId: string = this.route.snapshot.paramMap.get('id');
-      console.log('Id:', userId);
-      this.userservice.getUserDetail(userId).subscribe(userd => {
-        this.userArray = userd as Usuario;
-        console.log('User:',userd.name);
-      });    }
-
-  fetchUsers() {
-    this.userservice.getUserList().subscribe((data) => {
-      console.log(data);
+  ngOnInit() {
+    this.userService.getUsers().subscribe((res) => {
+        this.users = res.map((t) => ({
+          id: t.payload.doc.id,
+          ...t.payload.doc.data() as Usuario
+        }));
     });
   }
-/*
-  fetchUser(){
-    this.userservice.getUserList().valueChanges().subscribe(res => {
-      console.log('Fetched users list!');
-    });
- }
-*/
-}
 
+  userList() {
+    this.userService.getUsers()
+    .subscribe((data) => {
+      console.log(data);
+    }) ;
+  }
+
+  remove(id) {
+    console.log(id);
+    if (confirm('Are you sure?')) {
+      this.userService.delete(id);
+    }
+  }
+
+}

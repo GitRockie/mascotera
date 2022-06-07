@@ -7,7 +7,7 @@ import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { Capacitor } from '@capacitor/core';
 import { UserService } from 'src/app/services/users.service';
 import { Usuario } from 'src/app/models/interface';
-import { ToastController } from '@ionic/angular';
+
 
 
 @Injectable({
@@ -30,7 +30,6 @@ export class AuthenticationPage implements OnInit {
     private readonly router: Router,
     private readonly auth: AuthenticationService,
     private userService: UserService,
-    public toastCtrl: ToastController,
   ) {}
 
 
@@ -77,7 +76,7 @@ export class AuthenticationPage implements OnInit {
       sessionStorage.setItem('email',email);
       this.router.navigateByUrl('tabs');
     } catch (error) {
-      this.presentToast('Usuario o Password INVALIDO/INEXISTENTE');
+      this.userService.presentToast('Usuario o Password INVALIDO/INEXISTENTE');
     }
   }
 
@@ -85,12 +84,11 @@ export class AuthenticationPage implements OnInit {
     console.log('User:', user);
     try {
       await this.auth.signup(user.email, user.password);
-      if (this.takePhoto(user.nombre)){
-       await this.userService.createUser(user as Usuario);
-       this.router.navigateByUrl('');
-      }
+      this.takePhoto(user.nombre);
+      await this.userService.createUser(user as Usuario);
+      this.router.navigateByUrl('');
     } catch (error) {
-      this.presentToast('Usuario YA Registrado');
+      this.userService.presentToast('Usuario YA Registrado');
       console.log('Error:', error);
     }
   }
@@ -98,7 +96,7 @@ export class AuthenticationPage implements OnInit {
   async resetPassword(email: string) {
     try {
       await this.auth.resetPassword(email);
-      await this.presentToast('Password RESETEADO');
+      await this.userService.presentToast('Password RESETEADO');
       console.log('Email Sent');
       this.router.navigateByUrl('login');
     } catch (error) {
@@ -108,19 +106,19 @@ export class AuthenticationPage implements OnInit {
 
   async takePhoto(name: string) {
     const options = {
+      resultType: CameraResultType.DataUrl,
       format: 'jpeg',
       quality: 90,
-      saveToGallery: true,
-      resultType: CameraResultType.DataUrl,
+      saveToGallery: false,
       correctOrientation: true,
     };
 
     const originalPhoto = await Camera.getPhoto(options);
-    const photoInTempStorage = await Filesystem.readFile({ path: originalPhoto.path });
-    const date = new Date();
-    const time = date.getTime();
-    const fileName = name + date as string +'.jpeg';
-
+//    const photoInTempStorage = await Filesystem.readFile({ path: originalPhoto.path });
+//    const date = new Date();
+//    const time = date.getTime();
+    const fileName = name +'.jpeg';
+/*
     await Filesystem.writeFile({
       data: photoInTempStorage.data,
       path: fileName,
@@ -130,17 +128,10 @@ export class AuthenticationPage implements OnInit {
       directory: Directory.Data,
       path: fileName,
     });
-    const photoPath = Capacitor.convertFileSrc(finalPhotoUri.uri);
+*/
+    const photoPath = Capacitor.convertFileSrc(originalPhoto.dataUrl);
     console.log(photoPath);
     return true;
   }
-  async presentToast(msg: string) {
-    const toast = this.toastCtrl.create({
-      message: msg,
-      duration: 3000,
-      position: 'middle',
-      color: 'danger',
-    });
-    (await toast).present();
-  }
+
 }
