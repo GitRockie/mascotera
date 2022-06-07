@@ -2,9 +2,6 @@ import { Injectable } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Camera, CameraResultType } from '@capacitor/camera';
-import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
-import { Capacitor } from '@capacitor/core';
 import { UserService } from 'src/app/services/users.service';
 import { Usuario } from 'src/app/models/interface';
 
@@ -84,7 +81,7 @@ export class AuthenticationPage implements OnInit {
     console.log('User:', user);
     try {
       await this.auth.signup(user.email, user.password);
-      this.takePhoto(user.nombre);
+      this.userService.takePhoto(user.nombre);
       await this.userService.createUser(user as Usuario);
       this.router.navigateByUrl('');
     } catch (error) {
@@ -104,34 +101,5 @@ export class AuthenticationPage implements OnInit {
     }
   }
 
-  async takePhoto(name: string) {
-    const options = {
-      resultType: CameraResultType.DataUrl,
-      format: 'jpeg',
-      quality: 90,
-      saveToGallery: false,
-      correctOrientation: true,
-    };
-
-    const originalPhoto = await Camera.getPhoto(options);
-//    const photoInTempStorage = await Filesystem.readFile({ path: originalPhoto.path });
-//    const date = new Date();
-//    const time = date.getTime();
-    const fileName = name +'.jpeg';
-/*
-    await Filesystem.writeFile({
-      data: photoInTempStorage.data,
-      path: fileName,
-      directory: Directory.Data,
-    });
-    const finalPhotoUri = await Filesystem.getUri({
-      directory: Directory.Data,
-      path: fileName,
-    });
-*/
-    const photoPath = Capacitor.convertFileSrc(originalPhoto.dataUrl);
-    console.log(photoPath);
-    return true;
-  }
 
 }

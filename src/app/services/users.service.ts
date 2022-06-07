@@ -3,6 +3,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/interface';
 import { ToastController } from '@ionic/angular';
+import { Camera, CameraResultType } from '@capacitor/camera';
+import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+import { Capacitor } from '@capacitor/core';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +58,35 @@ export class UserService {
       color: 'danger',
     });
     (await toast).present();
+  }
+  async takePhoto(name: string) {
+    const options = {
+      resultType: CameraResultType.DataUrl,
+      format: 'jpeg',
+      quality: 90,
+      saveToGallery: false,
+      correctOrientation: true,
+    };
+
+    const originalPhoto = await Camera.getPhoto(options);
+//    const photoInTempStorage = await Filesystem.readFile({ path: originalPhoto.path });
+//    const date = new Date();
+//    const time = date.getTime();
+    const fileName = name +'.jpeg';
+/*
+    await Filesystem.writeFile({
+      data: photoInTempStorage.data,
+      path: fileName,
+      directory: Directory.Data,
+    });
+    const finalPhotoUri = await Filesystem.getUri({
+      directory: Directory.Data,
+      path: fileName,
+    });
+*/
+    const photoPath = Capacitor.convertFileSrc(originalPhoto.dataUrl);
+    console.log(photoPath);
+    return true;
   }
 
 }

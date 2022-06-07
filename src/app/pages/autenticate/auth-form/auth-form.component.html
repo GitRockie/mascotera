@@ -1,8 +1,8 @@
 <form [formGroup]="authForm">
   <div *ngIf="this.actionButtonText === 'Registro'" >
     <ion-row>
-      <ion-thumbnail class="user-image">
-        <img src="/assets/avatar.png">
+      <ion-thumbnail class="user-image" >
+        <img src = "/assets/avatar.png " (click)="takePhoto('pepe')">
       </ion-thumbnail>
     </ion-row>  
   </div>

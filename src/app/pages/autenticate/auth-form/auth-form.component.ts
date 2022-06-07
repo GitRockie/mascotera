@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Usuario } from 'src/app/models/interface';
+import { UserService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-auth-form',
@@ -13,7 +15,11 @@ export class AuthFormComponent implements OnInit {
   @Output() formSubmitted = new EventEmitter<any>();
 
   public authForm: FormGroup;
-    constructor(private readonly formBuilder: FormBuilder,) {}
+    user: Usuario ;
+    constructor(
+      private readonly formBuilder: FormBuilder,
+      private userService: UserService,
+      ) {}
 
   ngOnInit() {
     this.initializeForm(!this.isPasswordResetPage);
@@ -51,4 +57,8 @@ export class AuthFormComponent implements OnInit {
       this.formSubmitted.emit(credentials);
     }
   }
+  takePhoto(name: string){
+    this.userService.takePhoto(name);
+  }
+
 }
