@@ -7,23 +7,24 @@
 <ion-content>
 
   <ion-list>
-    <ion-item *ngFor="let user of users; index as position" lines="full">
-      <ion-avatar item-start (click) = 'this.photoService.addNewToGallery()'>
+    <ion-item *ngFor="let usr of user" lines="full" (click)="openUser(usr)" >
+      <ion-avatar item-start> <!-- (click) = 'this.photoService.addNewToGallery()'> -->
           <img src="/assets/avatar.png">
       </ion-avatar>
       <ion-label>
-        <strong>{{user.nombre}}</strong><br>
-          {{user.email}}
-      </ion-label>
-
+        <strong>{{usr.nombre}}</strong><br>
+          {{usr.email}}
+      </ion-label> 
+<!--      
       <div item-end>
-        <button [routerLink]="['/signup', user[$key]]">
-          <ion-icon name="create-sharp" style="zoom:1.5"></ion-icon>
+        <button (click)="updateUser(usr)">     
+          <ion-icon name="document-sharp" style="zoom:1.5"></ion-icon>
         </button>
-        <button (click)="remove([$key])">
+        <button (click)="openUser(usr)">
           <ion-icon name="trash-sharp" style="zoom:1.5"></ion-icon>
         </button>
       </div>
+-->
     </ion-item>
   </ion-list>
 

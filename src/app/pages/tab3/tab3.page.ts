@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Usuario, UserPhoto, } from 'src/app/models/interface';
 import { UserService } from '../../services/users.service';
 import { PhotoService } from 'src/app/services/photo.service';
+import { Observable } from 'rxjs';
+import { ModalController } from '@ionic/angular';
+import { UsersPage } from '../modal/users/users.page';
 
 @Component({
   selector: 'app-todo-list',
@@ -11,19 +14,29 @@ import { PhotoService } from 'src/app/services/photo.service';
 
 export class Tab3Page implements OnInit {
 
-  users: Usuario[];
+  user: Usuario[] = [];
 
   constructor(
     private userService: UserService,
-    public photoService: PhotoService) { }
+    private cd: ChangeDetectorRef,
+    private modalCtrl: ModalController,
+    public photoService: PhotoService, ) {}
 
   ngOnInit() {
-    this.userService.getUsers().subscribe((res) => {
-        this.users = res.map((t) => ({
-          id: t.payload.doc.id,
-          ...t.payload.doc.data() as Usuario
-        }));
+    this.userService.getUsers().subscribe(res => {
+      this.user = res;
+      this.cd.detectChanges();
     });
+}
+  async openUser(user: Usuario) {
+    const modal = await this.modalCtrl.create({
+      component: UsersPage,
+      componentProps: { id: user.id },
+      breakpoints: [0, 0.5, 0.8],
+      initialBreakpoint: 0.8
+    });
+
+    await modal.present();
   }
 
   userList() {
@@ -33,11 +46,8 @@ export class Tab3Page implements OnInit {
     }) ;
   }
 
-  remove(id) {
-    console.log(id);
-    if (confirm('Are you sure?')) {
-      this.userService.delete(id);
-    }
+  async deleteUser(user: Usuario) {
+    await this.userService.deleteUser(user);
   }
 
 }
