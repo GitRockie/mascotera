@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, sendPasswordResetEmail,
-  signInWithEmailAndPassword, signOut, User,  UserCredential,} from '@angular/fire/auth';
+         signInWithEmailAndPassword, signOut, User,
+         UserCredential, deleteUser, } from '@angular/fire/auth';
 import { Observable, of } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,21 @@ export class AuthenticationService {
   getUser(): User {
     return this.auth.currentUser;
   }
+/*
+  getUserList(){
+    const admin = require('firebase-admin');
+    const serviceAccount = require('./serviceAccountKey.json');
+
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+      databaseURL: 'https://mascotas-d4066.firebaseio.com',
+    });
+
+    admin.auth().listUsers().then(data=>{
+        console.log(data.users);
+    });
+  };
+  */
 
   getUser$(): Observable<User> {
     return of(this.getUser());

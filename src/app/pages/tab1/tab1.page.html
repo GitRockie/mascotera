@@ -1,40 +1,12 @@
 <ion-header>
-  <ion-toolbar class="ios hydrated">
-    <ion-title class="ios title-ios hydrated">Añadir Mascota</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Prueba Maps
+    </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <ion-list lines="full">
-    <form [formGroup]="formEntrada" (ngSubmit)="onFormSubmit()">
-      <ion-item>
-        <ion-label position="floating">Nombre:</ion-label>
-        <ion-input formControlName="name" type="text" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Tipo:</ion-label>
-        <ion-input formControlName="tipo" type="text" required>
-        </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Raza:</ion-label>
-        <ion-input formControlName="raza" type="text" required>
-        </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Nacido:</ion-label>
-        <ion-input formControlName="fnac" type="date" required >
-        </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Obs:</ion-label>
-        <ion-input formControlName="obs" type="text" >
-        </ion-input>
-      </ion-item>
-      <ion-row>
-        <ion-col>
-          <ion-button type="submit" color="primary" shape="" expand="block">Añadir</ion-button>
-        </ion-col>
-      </ion-row>
-    </form>
-  </ion-list>
-</ion-content>
+<div item-end>
+  <capacitor-google-maps #map></capacitor-google-maps>
+    <ion-button size='small' position="stacked" colort="primary" (click)="createMap()">Create Map</ion-button>
+    <ion-button size='small' position="stacked" colort="secondary" (click)="geoShare()">Compartir Ubicacion</ion-button>
+</div>

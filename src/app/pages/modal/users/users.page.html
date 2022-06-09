@@ -1,55 +1,55 @@
-  <div *ngIf="photo" >
-    <ion-row>
-      <ion-thumbnail class="user-image" >
-        <img [src] = "this.photoService.photos[0].webviewPath" (click)="this.photoService.addNewToGallery()">
-      </ion-thumbnail>
-    </ion-row>  
-  </div>
-    <ion-thumbnail class="user-image" *ngIf="!photo">
-      <img src="../../../../assets/avatar.png" (click)="this.photoService.addNewToGallery()">
-  </ion-thumbnail>
-  <ion-item>
-    <ion-label position="stacked">Email</ion-label>
-    <ion-input formControlName="email" type="email" placeholder="Tu email">
-    </ion-input>
-  </ion-item>
-  <ion-item >
-    <ion-label position="stacked">Password</ion-label>
-    <ion-input
-      formControlName="password"
-      type="password"
-      placeholder="Tu password"
-    >
-    </ion-input>
-  </ion-item>
-  <div >
-    <ion-item>
-      <ion-label position="stacked">Nombre</ion-label>
-      <ion-input formControlName="name" type="text" placeholder="Tu nombre">
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Direccion</ion-label>
-      <ion-input [(ngModel)]="user.direccion"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">C. Postal</ion-label>
-      <ion-input [(ngModel)]="user.cp"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Telefono</ion-label>
-      <ion-input [(ngModel)]="user.tlf"></ion-input>    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Observaciones</ion-label>
-      <ion-input [(ngModel)]="user.obs"></ion-input>
-    </ion-item>
-  </div>
-  <div item-end>
-    <button (click)="updateUser()">
-      <ion-icon name="document-sharp" style="zoom:1.5"></ion-icon>
-    </button>
-    <button (click)="deleteUser()">
-      <ion-icon name="trash-sharp" style="zoom:1.5"></ion-icon>
-    </button>
-  </div>
+{{pageText}}
+<div *ngIf="photo">
+  <ion-row>
+    <ion-avatar class="user-image">
+      <img
+        [src]="this.photoService.photos[0].webviewPath"
+        (click)="this.photoService.addNewToGallery()"
+      />
+    </ion-avatar>
+  </ion-row>
+</div>
+<ion-avatar class="user-image" *ngIf="!photo">
+  <img
+    src="../../../../assets/avatar.png"
+    (click)="this.photoService.addNewToGallery()"
+  />
+</ion-avatar>
+<ion-item >
+  <ion-label position="stacked">Email</ion-label>
+  <ion-input [(ngModel)]="user.email"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="stacked">Nombre</ion-label>
+  <ion-input [(ngModel)]="user.nombre"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="stacked">Direccion</ion-label>
+  <ion-input [(ngModel)]="user.direccion"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="stacked">C. Postal</ion-label>
+  <ion-input [(ngModel)]="user.cp"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="stacked">Telefono</ion-label>
+  <ion-input [(ngModel)]="user.tlf"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="stacked">Observaciones</ion-label>
+  <ion-input [(ngModel)]="user.obs"></ion-input>
+</ion-item>
+<div item-end>
+  <ion-button (click)="updateUser()" expand="block" >
+    Update
+  </ion-button>
+<!--
+  <button (click)="updateUser()">
+    <ion-icon name="document-sharp" style="zoom: 1.5"></ion-icon>Update
+  </button>
 
+  <button (click)="deleteUser()">
+    <ion-icon name="trash-sharp" style="zoom: 1.5">Delete</ion-icon>
+  </button>
+-->  
+</div>

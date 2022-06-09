@@ -9,5 +9,6 @@ export const environment = {
     authDomain: 'mascotas-d4066.firebaseapp.com',
     messagingSenderId: '239710763571',
   },
-production: false,
+  production: false,
+  apiKey: 'AIzaSyC0Sc-gPsxxLGhRR3DojweogbQkuMQWUm4',
 };

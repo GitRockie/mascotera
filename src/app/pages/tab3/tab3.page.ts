@@ -4,7 +4,7 @@ import { UserService } from '../../services/users.service';
 import { PhotoService } from 'src/app/services/photo.service';
 import { Observable } from 'rxjs';
 import { ModalController } from '@ionic/angular';
-import { UsersPage } from '../modal/users/users.page';
+import { ModalPage, } from '../modal/users/users.page';
 
 @Component({
   selector: 'app-todo-list',
@@ -30,10 +30,10 @@ export class Tab3Page implements OnInit {
 }
   async openUser(user: Usuario) {
     const modal = await this.modalCtrl.create({
-      component: UsersPage,
+      component: ModalPage,
       componentProps: { id: user.id },
-      breakpoints: [0, 0.5, 0.8],
-      initialBreakpoint: 0.8
+//      breakpoints: [0, 0.5, 0.8],
+//      initialBreakpoint: 0.8
     });
 
     await modal.present();

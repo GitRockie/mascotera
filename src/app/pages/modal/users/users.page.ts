@@ -9,11 +9,12 @@ import { PhotoService } from 'src/app/services/photo.service';
   templateUrl: './users.page.html',
   styleUrls: ['./users.page.scss'],
 })
-export class UsersPage implements OnInit {
+
+export class ModalPage implements OnInit {
   @Input() id: string;
   user: Usuario = null;
   photo: UserPhoto;
-  actionButtonText: string;
+  pageText: string;
   constructor(private userService: UserService,
     private modalCtrl: ModalController,
     public photoService: PhotoService,
@@ -26,20 +27,22 @@ export class UsersPage implements OnInit {
   }
 
   async deleteUser() {
-    this.actionButtonText = 'Delete';
+    this.pageText = 'Borrar Usuario';
     await this.userService.deleteUser(this.user);
     this.modalCtrl.dismiss();
   }
 
   async updateUser() {
-    this.actionButtonText = 'Update';
+    this.pageText = 'Actualizar Usuario';
+    console.log('Update:',this.user);
     await this.userService.updateUser(this.user);
-/*
-    const toast = await this.toastCtrl.create({
-      message: 'Usuario ACTUALIZADO',
-      duration: 2000
-    });
-*/
-    this.userService.presentToast('Usuario ACTUALIZADO');
+     try {
+      this.modalCtrl.dismiss();
+     }
+     catch(error)
+     {
+      this.userService.presentToast('Usuario ACTUALIZADO');
+     }
+
   }
 }

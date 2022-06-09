@@ -14,6 +14,7 @@ export const environment = {
     messagingSenderId: '239710763571',
   },
   production: false,
+  apiKey: 'AIzaSyC0Sc-gPsxxLGhRR3DojweogbQkuMQWUm4',
 };
 
 /*
