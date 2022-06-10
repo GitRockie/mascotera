@@ -13,13 +13,33 @@ import { Platform } from '@ionic/angular';
 export class PhotoService {
 
   public photos: UserPhoto[] = [];
-  // eslint-disable-next-line @typescript-eslint/naming-convention
+
   private PHOTO_STORAGE = 'photos';
   private platform: Platform;
   private storage: FirebaseStorage;
 
   constructor(platform: Platform) {
     this.platform = platform;}
+
+  public async loadSaved() {
+    // Retrieve cached photo array data
+    const photoList = await Storage.get({ key: this.PHOTO_STORAGE });
+    this.photos = JSON.parse(photoList.value) || [];
+    // more to come...
+    for (const photo of this.photos) {
+      // Read each saved photo's data from the Filesystem
+      const readFile = await Filesystem.readFile({
+        path: photo.filepath,
+        directory: Directory.Data,
+      });
+
+      // Web platform only: Load the photo as base64 dataç
+      if (this.platform.is('desktop'))
+      {
+        photo.webviewPath = 'data:image/jpeg;base64,${readFile.data}';
+      }
+    }
+  }
 
   public async addNewToGallery() {
     // Take a photo
@@ -78,21 +98,5 @@ export class PhotoService {
     reader.readAsDataURL(blob);
   });
 
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-  public async loadSaved() {
-    // Retrieve cached photo array data
-    const photoList = await Storage.get({ key: this.PHOTO_STORAGE });
-    this.photos = JSON.parse(photoList.value) || [];
-    // more to come...
-    for (const photo of this.photos) {
-      // Read each saved photo's data from the Filesystem
-      const readFile = await Filesystem.readFile({
-        path: photo.filepath,
-        directory: Directory.Data,
-      });
 
-      // Web platform only: Load the photo as base64 data
-      photo.webviewPath = 'data:image/jpeg;base64,${readFile.data}';
-    }
-  }
 }

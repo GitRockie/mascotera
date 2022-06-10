@@ -7,6 +7,6 @@
 </ion-header>
 <div item-end>
   <capacitor-google-maps #map></capacitor-google-maps>
-    <ion-button size='small' position="stacked" colort="primary" (click)="createMap()">Create Map</ion-button>
-    <ion-button *ngIf="disponible" size='small' position="stacked" colort="secondary" (click)="geoShare()">Compartir Ubicacion</ion-button>
+    <ion-button size='small' position="stacked" colort="primary" (click)="createMap()">Crear Map</ion-button>
+    <ion-button *ngIf="this.disponible" size='small' position="stacked" colort="secondary" (click)="geoShare()">Compartir Ubicacion</ion-button>
 </div>
