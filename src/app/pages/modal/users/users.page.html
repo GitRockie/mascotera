@@ -1,11 +1,7 @@
-{{pageText}}
 <div *ngIf="photo">
   <ion-row>
     <ion-avatar class="user-image">
-      <img
-        [src]="this.photoService.photos[0].webviewPath"
-        (click)="this.photoService.addNewToGallery()"
-      />
+      <img [src]="photo" (click)="this.photoService.addNewToGallery()" />
     </ion-avatar>
   </ion-row>
 </div>
@@ -15,7 +11,7 @@
     (click)="this.photoService.addNewToGallery()"
   />
 </ion-avatar>
-<ion-item >
+<ion-item>
   <ion-label position="stacked">Email</ion-label>
   <ion-input [(ngModel)]="user.email"></ion-input>
 </ion-item>
@@ -40,16 +36,5 @@
   <ion-input [(ngModel)]="user.obs"></ion-input>
 </ion-item>
 <div item-end>
-  <ion-button (click)="updateUser()" expand="block" >
-    Update
-  </ion-button>
-<!--
-  <button (click)="updateUser()">
-    <ion-icon name="document-sharp" style="zoom: 1.5"></ion-icon>Update
-  </button>
-
-  <button (click)="deleteUser()">
-    <ion-icon name="trash-sharp" style="zoom: 1.5">Delete</ion-icon>
-  </button>
--->  
+  <ion-button (click)="updateUser()" expand="block">Update</ion-button>
 </div>

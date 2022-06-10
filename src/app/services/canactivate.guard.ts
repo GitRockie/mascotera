@@ -11,10 +11,10 @@ export class AuthenticationGuard implements CanActivate {
   canActivate(): Promise<boolean | UrlTree> {
     return new Promise((resolve, reject) => {
       onAuthStateChanged(this.auth, (user) => {
-        if (user) {
+        if (user && sessionStorage.length > 0) {
           resolve(true);
         } else {
-          reject('No user logged in');
+          reject('Usuario NO LOGUEADO');
           this.router.navigateByUrl('/login');
         }
       });

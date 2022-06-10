@@ -31,7 +31,7 @@ export class Tab1Page implements OnInit {
     this.requestPermissions();
     if (this.disponible) {
       this.getCurrentCoordinate();
-//      this.createMap();
+      this.createMap();
     }
   }
 
@@ -62,6 +62,11 @@ export class Tab1Page implements OnInit {
           longitude: data.coords.longitude,
           accuracy: data.coords.accuracy,
         };
+        const lat = this.posLat.toString();
+        const lon = this.posLong.toString();
+        const sText = 'Mi Posicion: Lat:' + lat + ' , '+ 'Long:' + lon;
+        this.userService.presentToast(sText);
+        console.log('Toast',sText);
       })
       .catch((err) => {
         this.userService.presentToast(err);
@@ -69,9 +74,12 @@ export class Tab1Page implements OnInit {
       });
   }
   async geoShare() {
+    const lat = this.posLat.toString();
+    const lon = this.posLong.toString();
+    const sText = 'Esta es mi Posicion: Lat:' + lat + ' , '+ 'Long:' + lon;
     await Share.share({
       title: 'Localizacion',
-      text: 'Esta es mi Posicion: `${posLat)`, [´$postLong´]',
+      text: sText,
 //      url: 'http://ionicframework.com/',
       dialogTitle: 'Compartin Ubicacion',
     });

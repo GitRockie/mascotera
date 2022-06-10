@@ -15,6 +15,7 @@ export class ModalPage implements OnInit {
   user: Usuario = null;
   photo: UserPhoto;
   pageText: string;
+
   constructor(private userService: UserService,
     private modalCtrl: ModalController,
     public photoService: PhotoService,
@@ -29,6 +30,7 @@ export class ModalPage implements OnInit {
   async deleteUser() {
     this.pageText = 'Borrar Usuario';
     await this.userService.deleteUser(this.user);
+    this.userService.presentToast('Usuario ELIMINADO');
     this.modalCtrl.dismiss();
   }
 
@@ -43,6 +45,5 @@ export class ModalPage implements OnInit {
      {
       this.userService.presentToast('Usuario ACTUALIZADO');
      }
-
   }
 }

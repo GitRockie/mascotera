@@ -47,8 +47,8 @@ export class UserService {
   updateUser(users: Usuario) {
     const userDocRef = doc(this.firestore, `users/${users.id}`);
     return updateDoc(userDocRef, {
-      email: users.email,
       nombre: users.nombre,
+      email: users.email,
       direccion: users.direccion,
       cp: users.cp,
       tlf: users.tlf,
