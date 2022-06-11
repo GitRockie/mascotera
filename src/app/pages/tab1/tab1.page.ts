@@ -24,10 +24,10 @@ export class Tab1Page implements OnInit {
 
   ngOnInit(): void {
     this.requestPermissions();
-    if (this.disponible) {
+//    if (this.disponible) {
       this.getCurrentCoordinate();
- //     this.createMap();
-    }
+//      this.createMap();
+ //   }
   }
 
   async requestPermissions() {
@@ -56,6 +56,8 @@ export class Tab1Page implements OnInit {
         };
         const sText = 'Mi Posicion: ' + JSON.stringify(this.coordinate);
         this.userService.presentToast(sText);
+        this.posLong = this.coordinate.longitude;
+        this.posLat = this.coordinate.latitude;
       })
       .catch((err) => {
         this.userService.presentToast(err);
@@ -63,9 +65,7 @@ export class Tab1Page implements OnInit {
       });
   }
   async geoShare() {
-    const lat = this.posLat.toString();
-    const lon = this.posLong.toString();
-    const sText = 'Esta es mi Posicion: Lat:' + lat + ' , ' + 'Long:' + lon;
+    const sText = 'Esta es mi Posicion: Lat: ' + this.posLat.toString() +' , Long: ' + this.posLong.toString();
     await Share.share({
       title: 'Localizacion',
       text: sText,
