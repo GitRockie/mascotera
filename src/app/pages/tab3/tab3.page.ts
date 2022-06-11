@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Usuario, UserPhoto, } from 'src/app/models/interface';
 import { UserService } from '../../services/users.service';
 import { PhotoService } from 'src/app/services/photo.service';
@@ -27,7 +27,8 @@ export class Tab3Page implements OnInit {
       this.user = res;
       this.cd.detectChanges();
     });
-}
+  }
+
   async openUser(user: Usuario) {
     const modal = await this.modalCtrl.create({
       component: ModalPage,

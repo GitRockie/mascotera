@@ -1,12 +1,25 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>
-      Prueba Maps
-    </ion-title>
+    <ion-title> Mapas </ion-title>
   </ion-toolbar>
 </ion-header>
-<div item-end>
+<ion-item>
   <capacitor-google-maps #map></capacitor-google-maps>
-    <ion-button size='small' position="stacked" colort="primary" (click)="createMap()">Crear Map</ion-button>
-    <ion-button *ngIf="this.disponible" size='small' position="stacked" colort="secondary" (click)="geoShare()">Compartir Ubicacion</ion-button>
+</ion-item>
+<div item-end>
+  <ion-button
+    size="small"
+    position="stacked"
+    colort="primary"
+    (click)="createMap()"
+    >Visualizar Mapa</ion-button
+  >
+  <ion-button
+    *ngIf="this.disponible"
+    size="small"
+    position="stacked"
+    colort="secondary"
+    (click)="geoShare()"
+    >Compartir Ubicacion</ion-button
+  >
 </div>

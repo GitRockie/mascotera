@@ -1,4 +1,5 @@
-export  interface Usuario {  //usuario /propietario
+export  interface Usuario {
+  user: any;  //usuario /propietario
   $key: string;
   id: string;
   nombre: string;
@@ -6,7 +7,7 @@ export  interface Usuario {  //usuario /propietario
   cp: number;
   tlf: string;
   email: string;
-  photo: string;
+  photo: any;
   obs: string;
 }
 

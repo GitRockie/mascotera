@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "llistat",
+	"appId": "io.home.mascotera",
+	"appName": "Mascotera",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }

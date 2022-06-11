@@ -1,26 +1,31 @@
 import { Injectable } from '@angular/core';
-import { Camera, CameraResultType, CameraSource, Photo} from '@capacitor/camera';
-import { Filesystem, Directory, } from '@capacitor/filesystem';
+import { ElementRef,  } from '@angular/core';
+import { Camera, CameraResultType, Photo, } from '@capacitor/camera';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Capacitor } from '@capacitor/core';
 import { FirebaseStorage } from '@angular/fire/storage';
 import { Storage } from '@capacitor/storage';
-import { UserPhoto } from '../models/interface';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Platform } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class PhotoService {
 
-  public photos: UserPhoto[] = [];
+  filePickerRef: ElementRef<HTMLInputElement>;
+  photo: SafeResourceUrl;
+  isDesktop: boolean;
 
-  private PHOTO_STORAGE = 'photos';
-  private platform: Platform;
-  private storage: FirebaseStorage;
 
-  constructor(platform: Platform) {
-    this.platform = platform;}
-
+  constructor(
+    private platform: Platform,
+    private sanitizer: DomSanitizer,
+//    private storage: FirebaseStorage
+  ) {
+    this.platform = platform;
+  }
+/*
   public async loadSaved() {
     // Retrieve cached photo array data
     const photoList = await Storage.get({ key: this.PHOTO_STORAGE });
@@ -33,30 +38,30 @@ export class PhotoService {
         directory: Directory.Data,
       });
 
-      // Web platform only: Load the photo as base64 dataç
-      if (this.platform.is('desktop'))
-      {
+      // Web platform only: Load the photo as base64 data
+      if (this.platform.is('desktop')) {
         photo.webviewPath = 'data:image/jpeg;base64,${readFile.data}';
       }
     }
   }
-
-  public async addNewToGallery() {
+*/
+  public async addNewPhoto() {
     // Take a photo
-    const capturedPhoto = await Camera.getPhoto({
-      resultType: CameraResultType.Uri, // file-based data; provides best performance
-      source: CameraSource.Camera, // automatically take a new photo with the camera
-      quality: 100, // highest quality (0 to 100)
-    });
+    //    if (!Capacitor.isPluginAvailable('Camera') || (this.isDesktop && type === 'gallery')) {
+    if (!Capacitor.isPluginAvailable('Camera')) {
+      this.filePickerRef.nativeElement.click();
+      return;
+    }
 
-    // Save the picture and add it to photo collection
-    const savedImageFile = await this.savePicture(capturedPhoto);
-    this.photos.unshift(savedImageFile);
-    Storage.set({
-      key: this.PHOTO_STORAGE,
-      value: JSON.stringify(this.photos),
+    const image = await Camera.getPhoto({
+      quality: 100,
+      width: 400,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      //      source: CameraSource.Prompt
     });
-    console.log('Fotos:', this.photos[0]);
+    console.log('Foto:', this.photo);
+    return image;
   }
 
   private async savePicture(photo: Photo) {
@@ -68,14 +73,15 @@ export class PhotoService {
     const savedFile = await Filesystem.writeFile({
       path: fileName,
       data: base64Data,
-      directory: Directory.Data
+      directory: Directory.Data,
     });
-
+    console.log('Saved');
     // Use webPath to display the new image instead of base64 since it's
     // already loaded into memory
     return {
       filepath: fileName,
-      webviewPath: photo.webPath
+      webviewPath: photo.webPath,
+      photo,
     };
   }
 
@@ -84,18 +90,18 @@ export class PhotoService {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const response = await fetch(photo.webPath!);
     const blob = await response.blob();
-
-    return await this.convertBlobToBase64(blob) as string;
+    console.log('ReadB64');
+    return (await this.convertBlobToBase64(blob)) as string;
   }
 
-  private convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onerror = reject;
-    reader.onload = () => {
+  private convertBlobToBase64 = (blob: Blob) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      console.log('CBtoB64');
+      reader.onerror = reject;
+      reader.onload = () => {
         resolve(reader.result);
-    };
-    reader.readAsDataURL(blob);
-  });
-
-
+      };
+      reader.readAsDataURL(blob);
+    });
 }

@@ -1,23 +1,17 @@
-<div *ngIf="photo">
-  <ion-row>
-    <ion-avatar class="user-image">
-      <img [src]="photo" (click)="this.photoService.addNewToGallery()" />
-    </ion-avatar>
-  </ion-row>
-</div>
-<ion-avatar class="user-image" *ngIf="!photo">
-  <img
-    src="../../../../assets/avatar.png"
-    (click)="this.photoService.addNewToGallery()"
-  />
-</ion-avatar>
+<ion-item>
+  <ion-avatar class="user-image" slot="start" *ngIf="this.photo"> 
+    <img [src]="this.photo" (click)="userPhoto()" />
+  </ion-avatar>
+  <ion-avatar class="user-image" slot="start" *ngIf="!this.photo">
+    <img src="../../../../assets/avatar.png" (click)="userPhoto()" />
+  </ion-avatar>
+  <ion-label position="stacked">Nombre</ion-label>
+  <ion-input [(ngModel)]="user.nombre"></ion-input>
+  
+</ion-item>
 <ion-item>
   <ion-label position="stacked">Email</ion-label>
   <ion-input [(ngModel)]="user.email"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label position="stacked">Nombre</ion-label>
-  <ion-input [(ngModel)]="user.nombre"></ion-input>
 </ion-item>
 <ion-item>
   <ion-label position="stacked">Direccion</ion-label>

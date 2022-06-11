@@ -52,6 +52,7 @@ export class UserService {
       direccion: users.direccion,
       cp: users.cp,
       tlf: users.tlf,
+      photo: 'users.photo',
       obs: users.obs,
     });
   }

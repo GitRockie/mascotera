@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">llistat</string>
-    <string name="title_activity_main">llistat</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="app_name">Macotera</string>
+    <string name="title_activity_main">Mascotera</string>
+    <string name="package_name">io.home.nascotera</string>
+    <string name="custom_url_scheme">io.home.mascotera</string>
 </resources>

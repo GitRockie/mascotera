@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild, NgZone,} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
 import { GoogleMap } from '@capacitor/google-maps';
 import { environment } from 'src/environments/environment';
@@ -6,44 +6,36 @@ import { Share } from '@capacitor/share';
 import { Capacitor } from '@capacitor/core';
 import { UserService } from 'src/app/services/users.service';
 import { Platform } from '@ionic/angular';
-
 @Component({
   selector: 'app-home',
   templateUrl: './tab1.page.html',
   styleUrls: ['./tab1.page.scss'],
 })
 export class Tab1Page implements OnInit {
-//  @ViewChild('map')
-  @ViewChild('map', { static: true }) mapRef: ElementRef;
-//  mapRef: ElementRef<HTMLElement>;
+  @ViewChild('map')
+  mapRef: ElementRef<HTMLElement>;
   newMap: GoogleMap;
   coordinate: any;
   disponible = true;
   posLat = 33.6;
   posLong = -117.9;
 
-  constructor(
-    private userService: UserService,
-    private zone: NgZone,
-    private platform: Platform) {}
+  constructor(private userService: UserService, private platform: Platform) {}
 
   ngOnInit(): void {
     this.requestPermissions();
     if (this.disponible) {
       this.getCurrentCoordinate();
-      this.createMap();
+ //     this.createMap();
     }
   }
 
   async requestPermissions() {
-  console.log('Platform:',this.platform.is('desktop'));
-  if(!this.platform.is('desktop'))
-    {
+    console.log('Platform:', this.platform.is('desktop'));
+    if (!this.platform.is('desktop')) {
       const permResult = await Geolocation.requestPermissions();
-      console.log('Perm request result: ', permResult);
-      this.disponible = (permResult != null);
-      if (!this.disponible)
-      {
+      this.disponible = permResult != null;
+      if (!this.disponible) {
         this.userService.presentToast('GeoLocalizacion NO DISPONIBLE');
       }
     }
@@ -62,11 +54,8 @@ export class Tab1Page implements OnInit {
           longitude: data.coords.longitude,
           accuracy: data.coords.accuracy,
         };
-        const lat = this.posLat.toString();
-        const lon = this.posLong.toString();
-        const sText = 'Mi Posicion: Lat:' + lat + ' , '+ 'Long:' + lon;
+        const sText = 'Mi Posicion: ' + JSON.stringify(this.coordinate);
         this.userService.presentToast(sText);
-        console.log('Toast',sText);
       })
       .catch((err) => {
         this.userService.presentToast(err);
@@ -76,35 +65,26 @@ export class Tab1Page implements OnInit {
   async geoShare() {
     const lat = this.posLat.toString();
     const lon = this.posLong.toString();
-    const sText = 'Esta es mi Posicion: Lat:' + lat + ' , '+ 'Long:' + lon;
+    const sText = 'Esta es mi Posicion: Lat:' + lat + ' , ' + 'Long:' + lon;
     await Share.share({
       title: 'Localizacion',
       text: sText,
-//      url: 'http://ionicframework.com/',
       dialogTitle: 'Compartin Ubicacion',
     });
   }
   async createMap() {
+//    const boundingRect = this.mapRef.nativeElement.getBoundingClientRect() as DOMRect;
     this.newMap = await GoogleMap.create({
-      id: 'Mymap',
-      apiKey: environment.apiKey,
+      id: 'my-map',
       element: this.mapRef.nativeElement,
+      apiKey: environment.apiKey,
       config: {
         center: {
           lat: this.posLat,
           lng: this.posLong,
         },
-        zoom: 8,
+        zoom: 5,
       },
     });
-
-    const markerId = await this.newMap.addMarker({
-      coordinate: {
-        lat: this.posLat,
-        lng: this.posLong,
-      },
-      title: 'Estoy AQUI',
-    });
-
   }
 }
