@@ -4,6 +4,7 @@ import { ModalController, } from '@ionic/angular';
 import { Usuario, UserPhoto } from 'src/app/models/interface';
 import { PhotoService } from 'src/app/services/photo.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { url } from 'inspector';
 @Component({
   selector: 'app-modal',
   templateUrl: './users.page.html',
@@ -15,10 +16,12 @@ export class ModalPage implements OnInit {
   @Input() id: string;
   @ViewChild('filePicker', { static: false })
   filePickerRef: ElementRef<HTMLInputElement>;
-  photo: SafeResourceUrl;
+  public photo: SafeResourceUrl;
   isDesktop: boolean;
   user: Usuario ;
   pageText: string;
+  image: any;
+  dwnURL: any;
 
   constructor(
     private userService: UserService,
@@ -30,27 +33,44 @@ export class ModalPage implements OnInit {
   ngOnInit() {
     this.userService.getUserById(this.id).subscribe(res => {
       this.user = res;
+      this.getImage(this.user.id);
     });
+
   }
 
   async deleteUser() {
     this.pageText = 'Borrar Usuario';
-    await this.userService.deleteUser(this.user);
+    this.userService.deleteUser(this.user);
     this.userService.presentToast('Usuario ELIMINADO');
     this.modalCtrl.dismiss();
   }
-
   async userPhoto(){
-    const picture = this.photoService.addNewPhoto();
-    this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(
+    const picture =  this.photoService.addNewPhoto(this.user.id);
+      this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(
       picture && (await picture).dataUrl);
     console.log('Photo', this.photo);
     return ;
   }
 
+  async getImage(name: string)
+  {
+    this.image = this.photoService.getImageSaved(name);
+    if (this.image !== undefined)
+    {
+//      this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(
+//      this.image && ( await this.image).dataUrl);
+      this.photo = this.image.dataUrl;
+      console.log('photo', this.photo);
+    }
+    console.log('getImage:',this.image);
+  }
+
   async updateUser() {
     this.pageText = 'Actualizar Usuario';
-    console.log('Update:',this.user);
+    const file = this.user.id;
+//    const itemurl =  this.photoService.getStoredImage(this.user.id);
+//    this.user.photo = this.getImage(this.user.id);
+    console.log('UsersPhoto:',this.user.photo);
     await this.userService.updateUser(this.user);
      try {
       this.userService.presentToast('Usuario ACTUALIZADO');

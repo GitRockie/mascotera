@@ -1,1 +1,7 @@
-{}
+{
+  "plugins": {
+    "pushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
+  }
+}

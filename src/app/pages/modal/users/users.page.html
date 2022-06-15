@@ -1,6 +1,7 @@
+<ion-header>{{pageText}}</ion-header>
 <ion-item>
   <ion-avatar class="user-image" slot="start" *ngIf="this.photo"> 
-    <img [src]="this.photo" (click)="userPhoto()" />
+   <img [src] = "this.photo" id="myphoto" (click)="userPhoto()" />
   </ion-avatar>
   <ion-avatar class="user-image" slot="start" *ngIf="!this.photo">
     <img src="../../../../assets/avatar.png" (click)="userPhoto()" />

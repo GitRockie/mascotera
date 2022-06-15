@@ -7,7 +7,7 @@ export  interface Usuario {
   cp: number;
   tlf: string;
   email: string;
-  photo: any;
+  photo: string;
   obs: string;
 }
 
