@@ -24,10 +24,10 @@ export class Tab1Page implements OnInit {
 
   ngOnInit(): void {
     this.requestPermissions();
-//    if (this.disponible) {
+    if (this.disponible) {
       this.getCurrentCoordinate();
-//      this.createMap();
- //   }
+    //      this.createMap();
+    }
   }
 
   async requestPermissions() {
@@ -47,7 +47,7 @@ export class Tab1Page implements OnInit {
       console.log('Plugin geolocation no disponible');
       return;
     }
-    Geolocation.getCurrentPosition()
+     Geolocation.getCurrentPosition()
       .then((data) => {
         this.coordinate = {
           latitude: data.coords.latitude,
@@ -73,8 +73,7 @@ export class Tab1Page implements OnInit {
     });
   }
   async createMap() {
-//    const boundingRect = this.mapRef.nativeElement.getBoundingClientRect() as DOMRect;
-    this.newMap = await GoogleMap.create({
+     this.newMap = await GoogleMap.create({
       id: 'my-map',
       element: this.mapRef.nativeElement,
       apiKey: environment.apiKey,
