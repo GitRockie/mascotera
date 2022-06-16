@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package io.home.mascotera;
 
 import com.getcapacitor.BridgeActivity;
 

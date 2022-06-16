@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes, CanActivate } from '@angular/r
 import { AuthenticationGuard } from './services/canactivate.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'push', pathMatch: 'full' },
   {
     path: 'tabs',
     loadChildren: () => import('./pages/tabs/tabs.module').then((m) => m.TabsPageModule),
@@ -21,9 +21,15 @@ const routes: Routes = [
     path: 'reset',
     loadChildren: () => import('./pages/autenticate/authentication.module').then((m) => m.AuthenticationPageModule),
   },
-  { path: '**', redirectTo: 'login' },  {
+  { path: '**', redirectTo: 'login' },
+  {
     path: 'users',
-    loadChildren: () => import('./pages/modal/users/users.module').then( m => m.UsersPageModule)
+    loadChildren: () => import('./pages/modal/users/users.module').then( m => m.UsersPageModule),
+    canActivate: [AuthenticationGuard],
+  },
+  {
+    path: 'push',
+    loadChildren: () => import('./pages/push/push/push.module').then( m => m.PushPageModule)
   }
 
 ];

@@ -3,19 +3,19 @@
     "pushNotifications": {
       "presentationOptions": ["badge", "sound", "alert"],
       "SplashScreen": {
-        "launchShowDuration": 3000,
-        "launchAutoHide": true,
+        "launchShowDuration": 5000,
+        "launchAutoHide": false,
         "backgroundColor": "#ffffffff",
         "androidSplashResourceName": "splash",
         "androidScaleType": "CENTER_CROP",
         "showSpinner": true,
-        "androidSpinnerStyle": "large",
+        "androidSpinnerStyle": "small",
         "iosSpinnerStyle": "small",
         "spinnerColor": "#999999",
         "splashFullScreen": true,
-        "splashImmersive": true,
+        "splashImmersive": false,
         "layoutName": "launch_screen",
-        "useDialog": true
+        "useDialog": false
       }
     }
   }
