@@ -17,8 +17,8 @@ export class Tab1Page implements OnInit {
   newMap: GoogleMap;
   coordinate: any;
   disponible = true;
-  posLat = 33.6;
-  posLong = -117.9;
+  posLat = 0;
+  posLong = 0;
 
   constructor(private userService: UserService, private platform: Platform) {}
 
@@ -26,17 +26,17 @@ export class Tab1Page implements OnInit {
     this.requestPermissions();
     if (this.disponible) {
       this.getCurrentCoordinate();
-    //      this.createMap();
     }
   }
 
   async requestPermissions() {
     console.log('Platform:', this.platform.is('desktop'));
+
     if (!this.platform.is('desktop')) {
       const permResult = await Geolocation.requestPermissions();
-      this.disponible = permResult != null;
+      this.disponible = permResult !== null;
       if (!this.disponible) {
-        this.userService.presentToast('GeoLocalizacion NO DISPONIBLE');
+         this.userService.presentToast('GeoLocalizacion NO DISPONIBLE');
       }
     }
   }
@@ -55,7 +55,7 @@ export class Tab1Page implements OnInit {
           accuracy: data.coords.accuracy,
         };
         const sText = 'Mi Posicion: ' + JSON.stringify(this.coordinate);
-        this.userService.presentToast(sText);
+        this.userService.presentToast(sText, 'warning');
         this.posLong = this.coordinate.longitude;
         this.posLat = this.coordinate.latitude;
       })
@@ -69,7 +69,7 @@ export class Tab1Page implements OnInit {
     await Share.share({
       title: 'Localizacion',
       text: sText,
-      dialogTitle: 'Compartin Ubicacion',
+      dialogTitle: 'Compartir Ubicacion',
     });
   }
   async createMap() {

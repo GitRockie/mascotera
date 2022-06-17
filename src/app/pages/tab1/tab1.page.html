@@ -2,24 +2,18 @@
   <ion-toolbar color="primary">
     <ion-title> Mapas </ion-title>
   </ion-toolbar>
+  <ion-item *ngIf='posLat !== 0'>
+   <h3>Lat: {{this.posLat}}       -      Long: {{this.posLong}}  </h3>
+   </ion-item>
 </ion-header>
 <ion-item>
   <capacitor-google-maps #map></capacitor-google-maps>
 </ion-item>
 <div item-end>
-  <ion-button
-    size="small"
-    position="stacked"
-    colort="primary"
-    (click)="createMap()"
-    >Visualizar Mapa</ion-button
-  >
-  <ion-button
-    *ngIf="this.disponible"
-    size="small"
-    position="stacked"
-    colort="secondary"
-    (click)="geoShare()"
-    >Compartir Ubicacion</ion-button
-  >
+  <ion-button size="small" position="stacked" color="primary" (click)="createMap()">
+    Visualizar Mapa
+  </ion-button>
+  <ion-button *ngIf="this.disponible" size="small" position="stacked" colort="secondary" (click)="geoShare()">
+    Compartir Ubicacion
+  </ion-button>
 </div>

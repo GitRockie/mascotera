@@ -57,9 +57,9 @@ export class ModalPage implements OnInit {
     this.image = this.photoService.getImageSaved(name);
     if (this.image !== undefined)
     {
-//      this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(
-//      this.image && ( await this.image).dataUrl);
-      this.photo = this.image.dataUrl;
+      this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(
+      this.image && ( await this.image).dataUrl);
+//      this.photo = this.image.dataUrl;
       console.log('photo', this.photo);
     }
     console.log('getImage:',this.image);

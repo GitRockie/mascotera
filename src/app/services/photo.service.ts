@@ -24,6 +24,8 @@ import {
 } from '@angular/fire/compat/storage';
 import { getBytes } from 'firebase/storage';
 import { Observable } from 'rxjs';
+import { Url } from 'url';
+import { UrlSegmentGroup } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -82,11 +84,11 @@ export class PhotoService {
     const storage = getStorage();
     const filename = name + '.png';
     const storageRef = ref(this.storage, 'userimages/' + filename);
-    //    const httpsReference = ref(storage, 'https://firebasestorage.googleapis.com/b/bucket/o/userimages/'+ filename);
 
+    //    const httpsReference = ref(storage, 'https://firebasestorage.googleapis.com/b/bucket/o/userimages/'+ filename);
     // Get the download URL
-    const durl: Promise<string | void> = getDownloadURL(storageRef)
-      .then((url) => url)
+    let dUrl = getDownloadURL(storageRef)
+      .then((url) => dUrl = url )
       .catch((error) => {
         // A full list of error codes is available at
         // https://firebase.google.com/docs/storage/web/handle-errors
@@ -108,8 +110,8 @@ export class PhotoService {
             break;
         }
       });
-    console.log('service:', durl.toString());
-    return durl;
+    console.log('service:', dUrl);
+    return dUrl;
     /*
       .then((url) => {
         // `url` is the download URL for 'images/stars.jpg'
