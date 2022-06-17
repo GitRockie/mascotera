@@ -57,13 +57,12 @@ export class UserService {
     });
   }
 
-  async presentToast(msg: string, coLor?: any | null) {
-    const mycolor = coLor;
+  async presentToast(msg: string) {
     const toast = this.toastCtrl.create({
       message: msg,
       duration: 3000,
       position: 'middle',
-      color: mycolor ? mycolor : 'danger',
+      color: 'danger',
     });
     (await toast).present();
   }

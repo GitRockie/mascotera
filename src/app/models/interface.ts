@@ -93,14 +93,3 @@ export interface UserPhoto {
   filepath: string;
   webviewPath: string;
 }
-
-export class FileUpload {
-  key!: string;
-  name!: string;
-  url!: string;
-  file: File;
-
-  constructor(file: File) {
-    this.file = file;
-  }
-}
