@@ -1,14 +1,13 @@
 <ion-header>{{pageText}}</ion-header>
 <ion-item>
-  <ion-avatar class="user-image" slot="start" *ngIf="this.photo"> 
-   <img [src] = "this.photo" id="myphoto" (click)="userPhoto()" />
+  <ion-label position="stacked">Nombre</ion-label>
+  <ion-input [(ngModel)]="user.nombre"></ion-input>
+  <ion-avatar class="user-image" slot="start" *ngIf="photo"> 
+   <img [src] = "photo" id="myphoto" (click)="userPhoto()" />
   </ion-avatar>
   <ion-avatar class="user-image" slot="start" *ngIf="!this.photo">
     <img src="../../../../assets/avatar.png" (click)="userPhoto()" />
   </ion-avatar>
-  <ion-label position="stacked">Nombre</ion-label>
-  <ion-input [(ngModel)]="user.nombre"></ion-input>
-  
 </ion-item>
 <ion-item>
   <ion-label position="stacked">Email</ion-label>
