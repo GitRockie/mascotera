@@ -5,25 +5,26 @@
 </ion-header>
 
 <ion-content>
-
   <ion-list>
-    <ion-item *ngFor="let usr of user" lines="full" >
-      <ion-avatar item-start> <!-- (click) = 'this.photoService.addNewToGallery()'> -->
-          <img src="/assets/avatar.png">
+    <ion-item *ngFor="let usr of user" lines="full">
+      <ion-avatar class="user-image" slot="start" *ngIf="this.usr.photo">
+        <img [src]="this.usr.photo" />
+      </ion-avatar>
+      <ion-avatar class="user-image" slot="start" *ngIf="!this.usr.photo">
+        <img src="../../../../assets/avatar.png" />
       </ion-avatar>
       <ion-label>
-        <strong>{{usr.nombre}}</strong><br>
-          {{usr.email}}
-      </ion-label>      
+        <strong>{{usr.nombre}}</strong><br />
+        {{usr.email}}
+      </ion-label>
       <div item-end>
-        <button (click)="openUser(usr)">     
-          <ion-icon name="document-sharp" style="zoom:1.5"></ion-icon>
+        <button (click)="openUser(usr)">
+          <ion-icon name="document-sharp" style="zoom: 1.5"></ion-icon>
         </button>
         <button (click)="deleteUser(usr)">
-          <ion-icon name="trash-sharp" style="zoom:1.5"></ion-icon>
+          <ion-icon name="trash-sharp" style="zoom: 1.5"></ion-icon>
         </button>
       </div>
     </ion-item>
   </ion-list>
-
 </ion-content>

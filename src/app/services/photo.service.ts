@@ -3,7 +3,11 @@ import {
   AngularFireDatabase,
   AngularFireList,
 } from '@angular/fire/compat/database';
-import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/compat/storage';
+import {
+  AngularFireStorage,
+  AngularFireStorageReference,
+  AngularFireUploadTask,
+} from '@angular/fire/compat/storage';
 
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -15,8 +19,8 @@ import { Capacitor } from '@capacitor/core';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { Platform } from '@ionic/angular';
 import { ElementRef } from '@angular/core';
-import { doc, getDoc } from '@angular/fire/firestore';
-
+import { getDownloadURL, getStorage, ref } from '@angular/fire/storage';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -26,8 +30,8 @@ export class PhotoService {
   photo: SafeResourceUrl;
   image: any;
   isDesktop: boolean;
-  currentFileUpload?: FileUpload;
-  private basePath = '/userimages';
+  bucket = environment.firebase.storageBucket;
+  private basePath = '/userimages/';
 
   constructor(
     private db: AngularFireDatabase,
@@ -53,7 +57,7 @@ export class PhotoService {
   }
 
   pushFileToStorage(fileUpload: FileUpload): Observable<number | undefined> {
-    const filePath = `${this.basePath}/${fileUpload.file.name}`;
+    const filePath = this.basePath + fileUpload.file.name;
     const storageRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, fileUpload.file);
 
@@ -71,13 +75,16 @@ export class PhotoService {
       .subscribe();
     return uploadTask.percentageChanges();
   }
+
   async getImages(filename: string) {
+    const storage = getStorage();
+    const spaceRef = ref(storage, this.basePath + filename);
+    const path = getDownloadURL(spaceRef).then();
+//    console.log('Path url:', (await path).toString());
+    return (await path).toString();
 
   }
 
-  getFiles(filename: number): AngularFireList<FileUpload> {
-    return this.db.list(this.basePath, (ref) => ref.equalTo(filename));
-  }
 
   deleteFile(fileUpload: FileUpload): void {
     this.deleteFileDatabase(fileUpload.key)
@@ -112,4 +119,3 @@ export class PhotoService {
     this.db.list(this.basePath).push(fileUpload);
   }
 }
-

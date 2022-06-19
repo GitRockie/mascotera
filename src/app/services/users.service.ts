@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, collectionData, doc, docData, addDoc, deleteDoc, updateDoc } from '@angular/fire/firestore';
-import { Storage, FirebaseStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/interface';
 import { ToastController } from '@ionic/angular';
@@ -44,7 +43,7 @@ export class UserService {
     }
   }
 
-  updateUser(users: Usuario) {
+  updateUser(users: Usuario, userPhoto: string) {
     const userDocRef = doc(this.firestore, `users/${users.id}`);
     return updateDoc(userDocRef, {
       nombre: users.nombre,
@@ -52,7 +51,7 @@ export class UserService {
       direccion: users.direccion,
       cp: users.cp,
       tlf: users.tlf,
-      photo: 'users.photo',
+      photo: userPhoto,
       obs: users.obs,
     });
   }

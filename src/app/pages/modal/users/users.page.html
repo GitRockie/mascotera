@@ -3,7 +3,7 @@
   <ion-label position="stacked">Nombre</ion-label>
   <ion-input [(ngModel)]="user.nombre"></ion-input>
   <ion-avatar class="user-image" slot="start" *ngIf="photo"> 
-   <img [src] = "photo" id="myphoto" (click)="userPhoto()" />
+  <img  [src] = "this.photo"  (click)="userPhoto()" />
   </ion-avatar>
   <ion-avatar class="user-image" slot="start" *ngIf="!this.photo">
     <img src="../../../../assets/avatar.png" (click)="userPhoto()" />

@@ -1,5 +1,5 @@
 export  interface Usuario {
-  user: any;  //usuario /propietario
+//  user: any;  //usuario /propietario
   $key: string;
   id: string;
   nombre: string;

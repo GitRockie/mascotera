@@ -5,7 +5,8 @@ import { Usuario, FileUpload } from 'src/app/models/interface';
 import { PhotoService } from 'src/app/services/photo.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Photo } from '@capacitor/camera';
-import { url } from 'inspector';
+import { strict } from 'assert';
+
 @Component({
   selector: 'app-modal',
   templateUrl: './users.page.html',
@@ -22,7 +23,8 @@ export class ModalPage implements OnInit {
   user: Usuario ;
   pageText: string;
   image: Photo;
-  dwnURL: any;
+
+
 
   constructor(
     private userService: UserService,
@@ -34,8 +36,7 @@ export class ModalPage implements OnInit {
   ngOnInit() {
     this.userService.getUserById(this.id).subscribe(res => {
       this.user = res;
-      console.log('Nombre',res.nombre);
-      this.getUrl(this.user.id);
+      this.getImage(this.user.id );
     });
 
   }
@@ -52,33 +53,33 @@ export class ModalPage implements OnInit {
     const picture  =  await this.photoService.addNewPhoto(filename);
     this.image = picture;
     this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(
-    picture.dataUrl); // &&  picture.dataUrl);
+    picture.dataUrl &&  picture.dataUrl);
 //    this.photo = picture;
-    console.log('Photo', this.photo);
-    return ;
+//    console.log('Photo', this.photo);
+    return;
   }
 
-  async getUrl(name)
+  async getImage(filename: string)
   {
-    this.photoService.getImages(name);
-    if (this.image !== undefined)
-    {
-      this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(
-      this.image && ( await this.image).dataUrl);
-      console.log('photo', this.photo);
-    }
-    console.log('getImage:',this.image);
+    filename += '.png';
+    const picture = this.photoService.getImages(filename);
+//    console.log('picture:', (await picture).toString());
+    this.photo = (await picture).toString();
   }
 
   async updateUser() {
     this.pageText = 'Actualizar Usuario';
-//    const filename = 'userimages/' + this.user.id + '.png';
-//    const file = this.photoService.dataURLtoFile(this.image.dataUrl,filename);
-//    const fileUpload = new FileUpload(file);
-//    this.photoService.pushFileToStorage(fileUpload);
-//    this.user.photo = file.name;
+    if (typeof(this.photo) != 'string')
+    {
+      const filename =  this.user.id + '.png';
+      const file = this.photoService.dataURLtoFile(this.image.dataUrl,filename);
+      const fileUpload = new FileUpload(file);
+      this.photoService.pushFileToStorage(fileUpload);
+      this.user.photo = (await this.photoService.getImages(filename)).toString();
+      alert(this.user.photo);
+    }
     console.log('UsersPhoto:',this.user.photo);
-    await this.userService.updateUser(this.user);
+    await this.userService.updateUser(this.user, this.user.photo);
      try {
       this.userService.presentToast('Usuario ACTUALIZADO');
       this.modalCtrl.dismiss();
