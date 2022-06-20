@@ -16,7 +16,7 @@ export class AuthFormComponent implements OnInit {
 
   public authForm: FormGroup;
   user: Usuario;
-  public photo: SafeResourceUrl;
+  public photo: SafeResourceUrl = '../../../../assets/avatar.png';
   image: any;
 
   constructor(

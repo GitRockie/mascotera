@@ -42,7 +42,6 @@ export class ModalPage implements OnInit {
   async deleteUser() {
     this.pageText = 'Borrar Usuario';
     this.userService.deleteUser(this.user);
-    this.userService.presentToast('Usuario ELIMINADO');
     this.modalCtrl.dismiss();
   }
   async userPhoto()
