@@ -18,6 +18,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/autenticate/authentication.module').then((m) => m.AuthenticationPageModule),
   },
   {
+    path: 'google',
+    loadChildren: () => import('./pages/autenticate/authentication.module').then((m) => m.AuthenticationPageModule),
+  },
+  {
     path: 'reset',
     loadChildren: () => import('./pages/autenticate/authentication.module').then((m) => m.AuthenticationPageModule),
   },
@@ -31,7 +35,6 @@ const routes: Routes = [
     path: 'push',
     loadChildren: () => import('./pages/push/push/push.module').then( m => m.PushPageModule)
   }
-
 ];
 
 @NgModule({

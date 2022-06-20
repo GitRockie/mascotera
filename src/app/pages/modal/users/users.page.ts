@@ -1,11 +1,10 @@
-import { Component, ElementRef, ViewChild, Input, OnInit, Sanitizer } from '@angular/core';
+import { Component, ElementRef, ViewChild, Input, OnInit, } from '@angular/core';
 import { UserService } from '../../../services/users.service';
 import { ModalController, } from '@ionic/angular';
 import { Usuario, FileUpload } from 'src/app/models/interface';
 import { PhotoService } from 'src/app/services/photo.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Photo } from '@capacitor/camera';
-import { strict } from 'assert';
 
 @Component({
   selector: 'app-modal',
@@ -38,7 +37,6 @@ export class ModalPage implements OnInit {
       this.user = res;
       this.getImage(this.user.id );
     });
-
   }
 
   async deleteUser() {
@@ -49,13 +47,10 @@ export class ModalPage implements OnInit {
   }
   async userPhoto()
   {
-    const filename = this.user.id + '.png';
-    const picture  =  await this.photoService.addNewPhoto(filename);
+    const picture  =  await this.photoService.addNewPhoto();
     this.image = picture;
     this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(
     picture.dataUrl &&  picture.dataUrl);
-//    this.photo = picture;
-//    console.log('Photo', this.photo);
     return;
   }
 
@@ -76,9 +71,8 @@ export class ModalPage implements OnInit {
       const fileUpload = new FileUpload(file);
       this.photoService.pushFileToStorage(fileUpload);
       this.user.photo = (await this.photoService.getImages(filename)).toString();
-      alert(this.user.photo);
     }
-    console.log('UsersPhoto:',this.user.photo);
+  //  console.log('UsersPhoto:',this.user.photo);
     await this.userService.updateUser(this.user, this.user.photo);
      try {
       this.userService.presentToast('Usuario ACTUALIZADO');

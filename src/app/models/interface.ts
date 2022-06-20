@@ -18,6 +18,7 @@ export interface Mascota {   //Datos mascota
   foto: HTMLImageElement;
   tipo: string;  // perro, gato, loro....
   raza: string;
+  sexo: boolean;
   pelaje: string;
   chip: string;
   pedigree: Pedigree;

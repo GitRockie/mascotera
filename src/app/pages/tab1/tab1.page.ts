@@ -34,7 +34,7 @@ export class Tab1Page implements OnInit {
 
     if (!this.platform.is('desktop')) {
       const permResult = await Geolocation.requestPermissions();
-      this.disponible = permResult !== null;
+      this.disponible = (permResult !== null);
       if (!this.disponible) {
          this.userService.presentToast('GeoLocalizacion NO DISPONIBLE');
       }
@@ -82,8 +82,17 @@ export class Tab1Page implements OnInit {
           lat: this.posLat,
           lng: this.posLong,
         },
-        zoom: 5,
+        zoom: 8,
       },
+    });
+
+    await this.newMap.enableClustering();
+
+    const markerId = await this.newMap.addMarker({
+      coordinate: {
+        lat: this.posLat,
+        lng: this.posLong,
+      }
     });
   }
 }

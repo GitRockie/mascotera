@@ -1,58 +1,64 @@
 import { Injectable } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AuthenticationService, } from '../../services/authentication.service';
 import { UserService } from 'src/app/services/users.service';
 import { Usuario, UserPhoto } from 'src/app/models/interface';
 import { PhotoService } from 'src/app/services/photo.service';
 
-
-
-
+import { Platform } from '@ionic/angular';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.page.html',
   styleUrls: ['./authentication.page.scss'],
 })
-
 export class AuthenticationPage implements OnInit {
   url: string; // The URL we're at: login, signup, or reset.
   pageTitle = 'Sign In';
   actionButtonText = 'Sign In';
   user: Usuario;
   photo: any;
+  disable = false;
 
   constructor(
     private readonly router: Router,
     private readonly auth: AuthenticationService,
     private photoService: PhotoService,
     private userService: UserService,
+    private platform: Platform,
   ) {}
-
 
   // eslint-disable-next-line @angular-eslint/contextual-lifecycle
   ngOnInit(): void {
-    // First we get the URL, and with that URL we send the
-    // proper information to the authentication form component.
-    // this.url = this.router.url.substr(1);
+
+    if (this.platform.is('desktop')) { this.disable = true; };
+
     this.url = this.router.url.substring(1);
-//    console.log('url:', this.url);
+    //    console.log('url:', this.url);
+    if (this.url === 'login') {
+      this.pageTitle = 'Sing In';
+      this.actionButtonText = 'SingIn';
+    }
     if (this.url === 'signup') {
       this.pageTitle = 'Registrar Usuario';
-      this.actionButtonText = 'Registro';
+      this.actionButtonText = 'signup';
     }
     if (this.url === 'reset') {
-      this.pageTitle = 'Reset your Password';
-      this.actionButtonText = 'Reset Password';
+      this.pageTitle = 'Reset Password';
+      this.actionButtonText = 'reset';
+    }
+    if (this.url === 'google')
+    {
+      this.pageTitle = 'Google Sing In';
+      this.actionButtonText = 'googleSing';
     }
   }
 
-//  handleUserCredentials(userCredentials: { email: any; password: any }) {
-  handleUserCredentials(userCredentials: any ) {
+  //  handleUserCredentials(userCredentials: { email: any; password: any }) {
+  handleUserCredentials(userCredentials: any) {
     // This method gets the form value from the authentication component
     // And depending on the URL, it calls the respective method.
     const email = userCredentials.email;
@@ -68,13 +74,15 @@ export class AuthenticationPage implements OnInit {
       case 'reset':
         this.resetPassword(email);
         break;
+      case 'google':
+        this.googleSing();
     }
   }
 
   async login(email: string, password: string) {
     try {
       await this.auth.login(email, password);
-      sessionStorage.setItem('email',email);
+      sessionStorage.setItem('email', email);
       this.router.navigateByUrl('tabs');
     } catch (error) {
       this.userService.presentToast('Usuario o Password INVALIDO/INEXISTENTE');
@@ -85,7 +93,7 @@ export class AuthenticationPage implements OnInit {
     console.log('User:', user);
     try {
       await this.auth.signup(user.email, user.password);
-//      this.photo = this.photoService.addNewToGallery();
+      //      this.photo = this.photoService.addNewToGallery();
       await this.userService.createUser(user as Usuario);
       this.router.navigateByUrl('');
     } catch (error) {
@@ -99,11 +107,24 @@ export class AuthenticationPage implements OnInit {
       await this.auth.resetPassword(email);
       await this.userService.presentToast('Password RESETEADO');
       console.log('Email Sent');
+      this.userService.presentToast('Se ha enviado un mensaje a: ' + email);
       this.router.navigateByUrl('login');
     } catch (error) {
       console.log('Error: ', error);
     }
   }
-
+  async googleSing() {
+    try {
+    this.user = await this.auth.googleSingin();
+    sessionStorage.setItem('user', this.user.nombre);
+    alert(sessionStorage.getItem('user'));
+    await this.userService.createUser(this.user as Usuario);
+    this.router.navigateByUrl('tabs');
+    } catch (error) {
+      this.userService.presentToast('Usuario NO DISPONIBLE');
+      console.log('Error:', error);
+    }
+  }
 
 }
+

@@ -1,22 +1,32 @@
 {
+  "appId": "io.home.mascotera",
+  "appName": "Mascotera",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
   "plugins": {
     "pushNotifications": {
-      "presentationOptions": ["badge", "sound", "alert"],
-      "SplashScreen": {
-        "launchShowDuration": 5000,
-        "launchAutoHide": false,
-        "backgroundColor": "#ffffffff",
-        "androidSplashResourceName": "splash",
-        "androidScaleType": "CENTER_CROP",
-        "showSpinner": true,
-        "androidSpinnerStyle": "small",
-        "iosSpinnerStyle": "small",
-        "spinnerColor": "#999999",
-        "splashFullScreen": true,
-        "splashImmersive": false,
-        "layoutName": "launch_screen",
-        "useDialog": false
-      }
+      "presentationOptions": ["badge", "sound", "alert"]
+    },
+    "SplashScreen": {
+      "launchShowDuration": 5000,
+      "launchAutoHide": false,
+      "backgroundColor": "#ffffffff",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": true,
+      "androidSpinnerStyle": "small",
+      "iosSpinnerStyle": "small",
+      "spinnerColor": "#999999",
+      "splashFullScreen": true,
+      "splashImmersive": false,
+      "layoutName": "launch_screen",
+      "useDialog": false
+    },
+    "GoogleAuth": {
+      "scopes": ["profile", "email"],
+      "serverClientId": "239710763571-d8netpfn0av59sihcam6v5de46b12kuk.apps.googleusercontent.com",
+      "forceCodeForRefreshToken": true
     }
   }
 }

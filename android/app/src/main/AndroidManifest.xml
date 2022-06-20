@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.home.mascotera">
+<meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@mipmap/push_icon_name" />
+<meta-data android:name="com.google.android.geo.API_KEY" android:value=" "AIzaSyBgVMN0qZA3F0yeLm6AewnXe7weyBd8dTU""/>
+
+<!-- Permissions -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-feature android:name="android.hardware.location.gps" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -35,15 +45,5 @@
         </provider>
 
     </application>
-
-
-  <!-- Geolocation API -->
-    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDODQwkk_X6ibF5MM-N1wqjndhsib-xecY"/>
-
-<!-- Permissions -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-feature android:name="android.hardware.location.gps" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

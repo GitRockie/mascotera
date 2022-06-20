@@ -38,7 +38,7 @@ export class PhotoService {
     private storage: AngularFireStorage
   ) {}
 
-  public async addNewPhoto(filename: string) {
+  public async addNewPhoto() {
     // Take a photo
     //    if (!Capacitor.isPluginAvailable('Camera') || (this.isDesktop && type === 'gallery')) {
     if (!Capacitor.isPluginAvailable('Camera')) {

@@ -1,14 +1,8 @@
 <form [formGroup]="authForm">
-  <div *ngIf="this.actionButtonText === 'Registro' && photo" >
-    <ion-row>
-      <ion-thumbnail class="user-image" >
-        <img [src] = "this.photoService.photos[0].webviewPath" (click)="this.photoService.addNewToGallery()">
-      </ion-thumbnail>
-    </ion-row>  
-  </div>
-    <ion-thumbnail class="user-image" *ngIf="!photo">
-      <img src="../../../../assets/avatar.png" (click)="this.photoService.addNewToGallery()">
-  </ion-thumbnail>
+  <div *ngIf="this.actionButtonText !== 'signup'" >
+  <ion-avatar class="user-image" *ngIf="this.actionButtonText !== 'signup'">
+      <img src="../../../../assets/avatar.png">
+    </ion-avatar>
   <ion-item>
     <ion-label position="stacked">Email</ion-label>
     <ion-input formControlName="email" type="email" placeholder="Tu email">
@@ -19,14 +13,33 @@
     <ion-input
       formControlName="password"
       type="password"
-      placeholder="Tu password"
-    >
+      placeholder="Tu password"    >
     </ion-input>
   </ion-item>
-  <div *ngIf="this.actionButtonText === 'Registro'" >
+  </div>
+  <div *ngIf="this.actionButtonText === 'signup'" >
     <ion-item>
-      <ion-label position="stacked">Nombre</ion-label>
-      <ion-input formControlName="name" type="text" placeholder="Tu nombre">
+      <ion-avatar *ngIf="photo">
+        <img [src] = "photo" (click)="userPhoto()">
+    </ion-avatar>
+    <ion-avatar class="user-image" *ngIf="this.actionButtonText === 'signup' && !photo">
+      <img src="../../../../assets/avatar.png" (click)="userPhoto()">
+    </ion-avatar>
+    </ion-item>
+    <ion-label position="stacked">Nombre</ion-label>
+    <ion-input formControlName="name" type="text" placeholder="Tu nombre">
+    </ion-input>
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input formControlName="email" type="email" placeholder="Tu email">
+      </ion-input>
+    </ion-item>
+    <ion-item *ngIf="!isPasswordResetPage">
+      <ion-label position="stacked">Password</ion-label>
+      <ion-input
+        formControlName="password"
+        type="password"
+        placeholder="Tu password"    >
       </ion-input>
     </ion-item>
     <ion-item>

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, sendPasswordResetEmail,
          signInWithEmailAndPassword, signOut, User,
-         UserCredential, deleteUser, } from '@angular/fire/auth';
+         UserCredential, deleteUser, GoogleAuthProvider, } from '@angular/fire/auth';
 import { Observable, of } from 'rxjs';
-
+import { GoogleAuth, } from '@codetrix-studio/capacitor-google-auth';
 
 @Injectable({
   providedIn: 'root'
@@ -11,26 +11,11 @@ import { Observable, of } from 'rxjs';
 
 export class AuthenticationService {
 
-  constructor(private readonly auth: Auth) {}
+  constructor(private readonly auth: Auth, ) {}
 
   getUser(): User {
     return this.auth.currentUser;
   }
-/*
-  getUserList(){
-    const admin = require('firebase-admin');
-    const serviceAccount = require('./serviceAccountKey.json');
-
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
-      databaseURL: 'https://mascotas-d4066.firebaseio.com',
-    });
-
-    admin.auth().listUsers().then(data=>{
-        console.log(data.users);
-    });
-  };
-  */
 
   getUser$(): Observable<User> {
     return of(this.getUser());
@@ -51,4 +36,10 @@ export class AuthenticationService {
   logout(): Promise<void> {
     return signOut(this.auth);
   }
+  async googleSingin(){
+    const googleUser = (await GoogleAuth.signIn()) as any;
+    console.log('Google User: ', googleUser);
+    return googleUser;
+  }
+
 }
