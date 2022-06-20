@@ -5,11 +5,15 @@
   "npmClient": "npm",
   "webDir": "www",
   "plugins": {
-    "pushNotifications": {
-      "presentationOptions": ["badge", "sound", "alert"]
+    "PushNotifications": {
+      "presentationOptions": [
+        "badge",
+        "sound",
+        "alert"
+      ]
     },
     "SplashScreen": {
-      "launchShowDuration": 5000,
+      "launchShowDuration": 3000,
       "launchAutoHide": false,
       "backgroundColor": "#ffffffff",
       "androidSplashResourceName": "splash",
@@ -21,10 +25,13 @@
       "splashFullScreen": true,
       "splashImmersive": false,
       "layoutName": "launch_screen",
-      "useDialog": false
+      "useDialog": true
     },
     "GoogleAuth": {
-      "scopes": ["profile", "email"],
+      "scopes": [
+        "profile",
+        "email"
+      ],
       "serverClientId": "239710763571-d8netpfn0av59sihcam6v5de46b12kuk.apps.googleusercontent.com",
       "forceCodeForRefreshToken": true
     }

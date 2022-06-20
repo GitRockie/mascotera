@@ -1,29 +1,32 @@
 {
-	"appId": "io.home.mascotera",
+	"appId": "com.home.mascotera",
 	"appName": "Mascotera",
 	"webDir": "www",
+	"bundledWebRuntime": false,
 	"plugins": {
-		"GoogleAuth": {
-			"scopes": [
-				"profile",
-				"email"
-			]
-		},
-		"pushNotifications": {
+		"PushNotifications": {
 			"presentationOptions": [
 				"badge",
 				"sound",
 				"alert"
 			]
 		},
+		"GoogleAuth": {
+			"scopes": [
+				"profile",
+				"email"
+			],
+			"serverClientId": "239710763571-d8netpfn0av59sihcam6v5de46b12kuk.apps.googleusercontent.com",
+			"forceCodeForRefreshToken": true
+		},
 		"SplashScreen": {
-			"launchShowDuration": 7000,
+			"launchShowDuration": 4000,
 			"launchAutoHide": true,
-			"backgroundColor": "#ffffffff",
-			"androidSplashResourceName": "tsplash",
+			"backgroundColor": "#ffffff",
+			"androidSplashResourceName": "splash",
 			"androidScaleType": "CENTER_CROP",
 			"showSpinner": true,
-			"androidSpinnerStyle": "small",
+			"androidSpinnerStyle": "large",
 			"iosSpinnerStyle": "small",
 			"spinnerColor": "#999999",
 			"splashFullScreen": true,
