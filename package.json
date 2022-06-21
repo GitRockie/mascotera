@@ -37,6 +37,7 @@
     "@ionic/angular": "^6.1.8",
     "@ionic/pwa-elements": "^3.1.1",
     "firebase": "^9.8.2",
+    "globalthis": "^1.0.3",
     "guard": "^0.1.2",
     "guards": "^0.3.0",
     "material": "^0.4.3",

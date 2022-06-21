@@ -3,7 +3,6 @@ import { Geolocation } from '@capacitor/geolocation';
 import { GoogleMap } from '@capacitor/google-maps';
 import { environment } from 'src/environments/environment';
 import { Share } from '@capacitor/share';
-import { Capacitor } from '@capacitor/core';
 import { UserService } from 'src/app/services/users.service';
 import { Platform } from '@ionic/angular';
 @Component({
@@ -42,6 +41,7 @@ export class Tab1Page implements OnInit {
   }
 
   getCurrentCoordinate() {
+     this.userService.presentToast('Calculando...','success');
     if (!this.disponible) {
       this.userService.presentToast('Geolocalizacion NO DISPONBLE');
       console.log('Plugin geolocation no disponible');
@@ -82,7 +82,7 @@ export class Tab1Page implements OnInit {
           lat: this.posLat,
           lng: this.posLong,
         },
-        zoom: 8,
+        zoom: 15,
       },
     });
 

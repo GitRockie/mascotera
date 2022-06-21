@@ -29,7 +29,8 @@ const config: CapacitorConfig = {
       layoutName: 'launch_screen',
       useDialog: false,
     }
-  }
+  },
 };
+
 
 export default config;

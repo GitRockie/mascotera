@@ -3,7 +3,9 @@ import { Auth, createUserWithEmailAndPassword, sendPasswordResetEmail,
          signInWithEmailAndPassword, signOut, User,
          UserCredential, deleteUser, GoogleAuthProvider, } from '@angular/fire/auth';
 import { Observable, of } from 'rxjs';
-import { GoogleAuth, } from '@codetrix-studio/capacitor-google-auth';
+import { GoogleAuth, GoogleAuthPlugin} from '@codetrix-studio/capacitor-google-auth';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +17,6 @@ export class AuthenticationService {
 
   getUser(): User {
     return this.auth.currentUser;
-  }
-
-  getUser$(): Observable<User> {
-    return of(this.getUser());
   }
 
   login(email: string, password: string): Promise<UserCredential> {
@@ -33,9 +31,6 @@ export class AuthenticationService {
     return sendPasswordResetEmail(this.auth, email);
   }
 
-  logout(): Promise<void> {
-    return signOut(this.auth);
-  }
   async googleSingin(){
     const googleUser = (await GoogleAuth.signIn()) as any;
     console.log('Google User: ', googleUser);

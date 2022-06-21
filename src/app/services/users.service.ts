@@ -31,7 +31,8 @@ export class UserService {
 
   createUser(users: Usuario) {
     const userRef = collection(this.firestore, 'users');
-    return addDoc(userRef, users);
+    const user = addDoc(userRef, users);
+    return user;
   }
 
   getUsers(): Observable<Usuario[]> {
