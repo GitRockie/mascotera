@@ -17,7 +17,7 @@ export class DataService {
       name: mascota.name,
       tipo: mascota.tipo,
       raza: mascota.raza,
-      fnac: mascota.fnac,
+      fnac: mascota.nacimiento,
       obs: mascota.obs,
     });
   }
@@ -37,7 +37,7 @@ export class DataService {
       name: mascota.name,
       tipo: mascota.tipo,
       raza: mascota.raza,
-      fnac: mascota.fnac,
+      fnac: mascota.nacimiento,
       obs: mascota.obs,
     });
   }

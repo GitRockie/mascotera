@@ -1,8 +1,7 @@
 {
-  "name": "mascotera",
+  "name": "mascotas",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Jm",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -20,14 +19,29 @@
     "@angular/platform-browser": "~13.2.2",
     "@angular/platform-browser-dynamic": "~13.2.2",
     "@angular/router": "~13.2.2",
+    "@capacitor/android": "3.5.1",
     "@capacitor/app": "1.1.1",
+    "@capacitor/camera": "^1.3.1",
     "@capacitor/core": "3.5.1",
+    "@capacitor/filesystem": "^1.1.0",
+    "@capacitor/geolocation": "^1.3.1",
+    "@capacitor/google-maps": "^1.1.0",
     "@capacitor/haptics": "1.1.4",
     "@capacitor/keyboard": "1.2.2",
+    "@capacitor/push-notifications": "^1.0.9",
+    "@capacitor/share": "^1.1.2",
+    "@capacitor/splash-screen": "^1.2.2",
     "@capacitor/status-bar": "1.0.8",
-    "@ionic/angular": "^6.0.0",
+    "@capacitor/storage": "^1.2.5",
+    "@codetrix-studio/capacitor-google-auth": "^3.1.4",
+    "@ionic/angular": "^6.1.8",
+    "@ionic/pwa-elements": "^3.1.1",
+    "firebase": "^9.8.2",
+    "guard": "^0.1.2",
+    "guards": "^0.3.0",
+    "material": "^0.4.3",
     "rxjs": "~6.6.0",
-    "tslib": "^2.2.0",
+    "service": "^0.1.4",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -61,7 +75,8 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
+    "tslib": "^2.4.0",
     "typescript": "~4.4.4"
   },
-  "description": "An Ionic project"
+  "description": "Mascotas"
 }

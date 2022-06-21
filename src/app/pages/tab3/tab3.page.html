@@ -1,17 +1,30 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+    <ion-title>Usuarios</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let usr of user" lines="full">
+      <ion-avatar class="user-image" slot="start" *ngIf="this.usr.photo">
+        <img [src]="this.usr.photo" />
+      </ion-avatar>
+      <ion-avatar class="user-image" slot="start" *ngIf="!this.usr.photo">
+        <img src="../../../../assets/avatar.png" />
+      </ion-avatar>
+      <ion-label>
+        <strong>{{usr.nombre}}</strong><br />
+        {{usr.email}}
+      </ion-label>
+      <div item-end>
+        <button (click)="openUser(usr)">
+          <ion-icon name="document-sharp" style="zoom: 1.5"></ion-icon>
+        </button>
+        <button (click)="deleteUser(usr)">
+          <ion-icon name="trash-sharp" style="zoom: 1.5"></ion-icon>
+        </button>
+      </div>
+    </ion-item>
+  </ion-list>
 </ion-content>

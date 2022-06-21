@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "239710763571",
+    "firebase_url": "https://mascotas-d4066-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "mascotas-d4066",
+    "storage_bucket": "mascotas-d4066.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239710763571:android:cc457d97b9989e764e0146",
+        "android_client_info": {
+          "package_name": "io.home.mascotera"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "239710763571-d8netpfn0av59sihcam6v5de46b12kuk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgVMN0qZA3F0yeLm6AewnXe7weyBd8dTU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "239710763571-d8netpfn0av59sihcam6v5de46b12kuk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

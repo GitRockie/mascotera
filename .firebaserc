@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "mascotas-d4066": {
+      "hosting": {
+        "app": [
+          "mascotas-d4066"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "mascotas-d4066"
+  }
+}

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Mascota } from '../../models/interface';
 import { DataService } from '../../services/data.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -31,7 +30,7 @@ export class Tab2Page implements OnInit {
 
   fetchMascota() {
     this.dataService.getMascotaList().valueChanges().subscribe(res => {
-      console.log('Fetched users list!');
+      console.log('Fetched mascota list!');
     });
   }
 }
