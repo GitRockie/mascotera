@@ -17,6 +17,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { GoogleMap } from '@capacitor/google-maps';
 import { provideMessaging,getMessaging } from '@angular/fire/messaging';
+import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -34,6 +35,12 @@ import { provideMessaging,getMessaging } from '@angular/fire/messaging';
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
     provideMessaging(() => getMessaging()),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

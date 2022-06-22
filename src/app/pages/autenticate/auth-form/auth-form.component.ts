@@ -12,6 +12,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class AuthFormComponent implements OnInit {
   @Input() actionButtonText = 'Sign In';
   @Input() isPasswordResetPage = false;
+  @Input() isGoogleSign = false;
   @Output() formSubmitted = new EventEmitter<any>();
 
   public authForm: FormGroup;

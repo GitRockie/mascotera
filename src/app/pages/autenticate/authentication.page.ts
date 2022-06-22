@@ -75,7 +75,7 @@ export class AuthenticationPage implements OnInit {
         this.resetPassword(email);
         break;
       case 'google':
-        this.googleSing();
+        this.googleSign();
     }
   }
 
@@ -113,9 +113,9 @@ export class AuthenticationPage implements OnInit {
       console.log('Error: ', error);
     }
   }
-  async googleSing() {
+  async googleSign() {
     try {
-    this.user = await this.auth.googleSingin();
+    this.user = await this.auth.googleSingIn();
     sessionStorage.setItem('user', this.user.nombre);
     alert(sessionStorage.getItem('user'));
     await this.userService.createUser(this.user as Usuario);
