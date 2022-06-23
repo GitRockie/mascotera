@@ -1,26 +1,32 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {
   Auth,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
-  signOut,
   User,
-  signInWithRedirect,
   UserCredential,
-  deleteUser,
 } from '@angular/fire/auth';
 import { Observable, of } from 'rxjs';
 //import { GoogleAuth,  GoogleAuthPlugin} from '@codetrix-studio/capacitor-google-auth';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithPopup, getRedirectResult, signInWithRedirect, GoogleAuthProvider } from 'firebase/auth';
+import { AngularFireAuth, } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
+import * as auth from 'firebase/auth';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private readonly auTh: Auth,
-              ) {}
+    constructor(
+      private readonly auTh: Auth,
+      private fireAuth: AngularFireAuth,
+      public afs: AngularFirestore, // Inject Firestore service
+      public afAuth: AngularFireAuth, // Inject Firebase auth service
+      public router: Router,
+    ) {}
 
   getUser(): User {
     return this.auTh.currentUser;
@@ -39,30 +45,23 @@ export class AuthenticationService {
   }
 
   async googleSingIn() {
-    const auth = getAuth();let user: any = null;
-    const provider = new GoogleAuthProvider();
-    provider.addScope('profile');
-    provider.addScope('email');
-
-    await signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-         user = result.user;
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-//        this.userService.presentToast(error,'danger');
-        console.log('Google:',user);
+      return this.authLogin(new auth.GoogleAuthProvider())
+      .then((res: any) => {
+        if (res) {
+          console.log('Res:',res);
+        }
+        return res.user;
       });
-      return user;
+    }
+   // Auth logic to run auth providers
+  async authLogin(provider: any) {
+    try {
+      const result = await this.afAuth
+        .signInWithPopup(provider);
+        console.log('Result:',result);
+      return result;
+    } catch (error) {
+      window.alert(error);
+    }
   }
 }

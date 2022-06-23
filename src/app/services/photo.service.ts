@@ -1,13 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFireDatabase,
-  AngularFireList,
-} from '@angular/fire/compat/database';
-import {
-  AngularFireStorage,
-  AngularFireStorageReference,
-  AngularFireUploadTask,
-} from '@angular/fire/compat/storage';
+import { AngularFireDatabase, } from '@angular/fire/compat/database';
+import { AngularFireStorage, } from '@angular/fire/compat/storage';
 
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -39,8 +32,6 @@ export class PhotoService {
   ) {}
 
   public async addNewPhoto() {
-    // Take a photo
-    //    if (!Capacitor.isPluginAvailable('Camera') || (this.isDesktop && type === 'gallery')) {
     if (!Capacitor.isPluginAvailable('Camera')) {
       this.filePickerRef.nativeElement.click();
       return;
@@ -50,9 +41,7 @@ export class PhotoService {
       width: 400,
       allowEditing: false,
       resultType: CameraResultType.DataUrl,
-      //      source: CameraSource.Prompt
     }).then();
-    //    this.pushFileToStorage(fileUpload);
     return image;
   }
 
@@ -85,7 +74,7 @@ export class PhotoService {
 
   }
 
-
+/*
   deleteFile(fileUpload: FileUpload): void {
     this.deleteFileDatabase(fileUpload.key)
       .then(() => {
@@ -93,7 +82,7 @@ export class PhotoService {
       })
       .catch((error) => console.log(error));
   }
-
+*/
   dataURLtoFile(dataurl: string, filename: string) {
     const arr = dataurl.split(',');
     const mime = arr[0].match(/:(.*?);/)[1];
@@ -105,7 +94,7 @@ export class PhotoService {
     }
     return new File([u8arr], filename, { type: mime });
   }
-
+/*
   private deleteFileDatabase(key: string): Promise<void> {
     return this.db.list(this.basePath).remove(key);
   }
@@ -114,8 +103,9 @@ export class PhotoService {
     const storageRef = this.storage.ref(this.basePath);
     storageRef.child(name).delete();
   }
-
+*/
   private saveFileData(fileUpload: FileUpload): void {
     this.db.list(this.basePath).push(fileUpload);
   }
+
 }

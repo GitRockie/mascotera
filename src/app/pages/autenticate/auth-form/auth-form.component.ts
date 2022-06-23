@@ -12,7 +12,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class AuthFormComponent implements OnInit {
   @Input() actionButtonText = 'Sign In';
   @Input() isPasswordResetPage = false;
-  @Input() isGoogleSign = false;
+  @Input() isGoogleSignPage = false;
   @Output() formSubmitted = new EventEmitter<any>();
 
   public authForm: FormGroup;
@@ -27,7 +27,7 @@ export class AuthFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.initializeForm(!this.isPasswordResetPage);
+    this.initializeForm(!(this.isPasswordResetPage && this.isGoogleSignPage));
   }
 
   initializeForm(showPasswordField: boolean): void {
@@ -52,6 +52,10 @@ export class AuthFormComponent implements OnInit {
       },
       Validators.required
     );
+    if (this.isGoogleSignPage)
+    {
+      this.authForm.markAsDirty();
+    }
   }
 
   submitCredentials(authForm: FormGroup): void {

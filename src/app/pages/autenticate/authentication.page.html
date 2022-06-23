@@ -9,38 +9,34 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-    <app-auth-form
-    *ngIf="url"
+  <app-auth-form
+    *ngIf="url !== 'google'"
     (formSubmitted)="handleUserCredentials($event)"
     [actionButtonText]="actionButtonText"
+    [isGoogleSignPage]="url !== 'google'"
     [isPasswordResetPage]="url === 'reset'"
-  >
+    >
   </app-auth-form>
   <ion-button 
     expand="block"
     size = "small"
     color="danger"
     routerLink="/google"
-    *ngIf="url && url !== 'reset' && url !== 'signup' && url !== 'google'">
-    Google Sign In
+    *ngIf="url && url !== 'reset' && url !== 'signup'">Google Sign In
   </ion-button>
-
   <ion-button 
     expand="block"
     size = "small"
     color="warning"
     routerLink="/signup"
-    *ngIf="url  && url !== 'reset' && url !== 'google'"
-  >
-    Registro
+    *ngIf="url  && url !== 'reset' && url !== 'google'">Registro
   </ion-button>
   <ion-button
     expand="block"
     color="tertiary"
     size="small"
     routerLink="/reset"
-    *ngIf="url && url !== 'reset' && url !== 'signup' && url !== 'google' "
-  >
+    *ngIf="url &&  url !== 'signup' && url !== 'google' " >
     Reset Password
   </ion-button>
 </ion-content>

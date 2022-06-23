@@ -21,26 +21,21 @@ export class AuthenticationPage implements OnInit {
   actionButtonText = 'Sign In';
   user: Usuario;
   photo: any;
-  disable = false;
 
   constructor(
     private readonly router: Router,
     private readonly auth: AuthenticationService,
     private photoService: PhotoService,
     private userService: UserService,
-    private platform: Platform,
   ) {}
 
   // eslint-disable-next-line @angular-eslint/contextual-lifecycle
   ngOnInit(): void {
-
-    if (this.platform.is('desktop')) { this.disable = true; };
-
     this.url = this.router.url.substring(1);
     //    console.log('url:', this.url);
     if (this.url === 'login') {
       this.pageTitle = 'Sing In';
-      this.actionButtonText = 'SingIn';
+      this.actionButtonText = 'signin';
     }
     if (this.url === 'signup') {
       this.pageTitle = 'Registrar Usuario';
@@ -52,13 +47,14 @@ export class AuthenticationPage implements OnInit {
     }
     if (this.url === 'google')
     {
-      this.pageTitle = 'Google Sing In';
-      this.actionButtonText = 'googleSing';
+//      this.pageTitle = 'Google Sing In';
+//      this.actionButtonText = 'googleSing';
+       this.googleSign();
     }
   }
 
   //  handleUserCredentials(userCredentials: { email: any; password: any }) {
-  handleUserCredentials(userCredentials: any) {
+  handleUserCredentials(userCredentials: { email: any; password: any}) {
     // This method gets the form value from the authentication component
     // And depending on the URL, it calls the respective method.
     const email = userCredentials.email;
@@ -74,8 +70,8 @@ export class AuthenticationPage implements OnInit {
       case 'reset':
         this.resetPassword(email);
         break;
-      case 'google':
-        this.googleSign();
+//      case 'google':
+//        this.googleSign();
     }
   }
 
@@ -115,16 +111,21 @@ export class AuthenticationPage implements OnInit {
   }
   async googleSign() {
     try {
-    this.user = await this.auth.googleSingIn();
-    sessionStorage.setItem('user', this.user.nombre);
+    const uSer: any = await this.auth.googleSingIn().then();
+    console.log('PUser:',uSer);
+    this.user.id = uSer.id;
+    this.user.email = uSer.email;
+    this.user.nombre = uSer.displayName;
+    this.user.photo = uSer.photoURL;
+    sessionStorage.setItem('user', this.user.email);
     alert(sessionStorage.getItem('user'));
     await this.userService.createUser(this.user as Usuario);
     this.router.navigateByUrl('tabs');
     } catch (error) {
       this.userService.presentToast('Usuario NO DISPONIBLE');
+      this.router.navigateByUrl('/login');
       console.log('Error:', error);
     }
   }
-
 }
 
