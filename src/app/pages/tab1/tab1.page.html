@@ -1,11 +1,9 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title> Mapas </ion-title>
-  </ion-toolbar>
+<app-header title="Mapa">
+
   <ion-item *ngIf='posLat !== 0'>
    <h3>Lat: {{this.posLat}}       -      Long: {{this.posLong}}  </h3>
    </ion-item>
-</ion-header>
+</app-header>
 <ion-item>
   <capacitor-google-maps #map></capacitor-google-maps>
 </ion-item>

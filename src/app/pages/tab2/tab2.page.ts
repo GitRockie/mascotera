@@ -33,4 +33,6 @@ export class Tab2Page implements OnInit {
       console.log('Fetched mascota list!');
     });
   }
+
+  
 }

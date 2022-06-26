@@ -1,23 +1,22 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Mascotas
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header title="mascotas"></app-header>
+
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let mascota of mascotaArray">
-      <ion-label>
-        <h2><strong><u>{{mascota.name}}</u></strong></h2>
-        <h5>
-          Tipo:ng  <strong>{{mascota.tipo}}</strong><br>
-          Raza: <strong>{{mascota.raza}}</strong><br>
-          Nace: <strong>{{mascota.fnac}}</strong><br>
-          Obs:  <strong>{{mascota.obs}}</strong><br>
-        </h5>
-      <ion-item-divider></ion-item-divider>  
-      </ion-label>
+      <ion-card>
+        <img src="../assets/dog-surf.jpg">
+        <ion-card-content>
+          <h2><strong><u>{{mascota.name}}</u></strong></h2>
+          <h5>
+            Yo soy: <strong>{{mascota.tipo}}</strong><br>
+            Mis ancestros: <strong>{{mascota.raza}}</strong><br>
+            Nací: <strong>{{mascota.fnac}}</strong><br>
+            Obs:  <strong>{{mascota.obs}}</strong><br>
+          </h5>
+        </ion-card-content>
+      </ion-card>
+
+
     </ion-item>
   </ion-list>
 </ion-content>
