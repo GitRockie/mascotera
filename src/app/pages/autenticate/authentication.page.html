@@ -8,7 +8,8 @@
     <ion-title>{{ pageTitle }}</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+
+<ion-content class="ion-padding">
     <app-auth-form
     *ngIf="url"
     (formSubmitted)="handleUserCredentials($event)"
@@ -16,31 +17,66 @@
     [isPasswordResetPage]="url === 'reset'"
   >
   </app-auth-form>
-  <ion-button 
-    expand="block"
-    size = "small"
-    color="danger"
-    routerLink="/google"
-    *ngIf="url && url !== 'reset' && url !== 'signup' && url !== 'google'">
-    Google Sign In
+   
+  <ion-button shape="round"
+              expand="block"
+            
+              size="small"
+              routerLink="/google"
+              *ngIf="url && url !== 'reset' && url !== 'signup' && url !== 'google'">
+              Google Sign In
+</ion-button>
+
+
+  <ion-button shape="round"
+              
+              expand="block"
+              size="small"
+              color="light"
+              routerLink="/reset"
+              *ngIf="url && url !== 'reset' && url !== 'signup' && url !== 'google' "
+              > Reset Password
   </ion-button>
 
-  <ion-button 
-    expand="block"
-    size = "small"
-    color="warning"
-    routerLink="/signup"
-    *ngIf="url  && url !== 'reset' && url !== 'google'"
-  >
-    Registro
-  </ion-button>
-  <ion-button
-    expand="block"
-    color="tertiary"
-    size="small"
-    routerLink="/reset"
-    *ngIf="url && url !== 'reset' && url !== 'signup' && url !== 'google' "
-  >
-    Reset Password
-  </ion-button>
+
+
+
+
+
 </ion-content>
+
+
+<ion-footer no-border>
+  <ion-toolbar>
+    
+    <ion-row>
+
+      <ion-col>
+          <ion-button shape="round"
+                      expand="full"
+                      size="small"
+                      fill="outline"
+                      color="tertiary"
+                      routerLink="/login">
+            Ingresar
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+        <ion-button shape="round"
+                    expand="full"
+                    size="small"
+                    fill="outline"
+                    color="success"
+                    routerLink="/signup"
+                    *ngIf="url  && url !== 'reset' && url !== 'google'">
+          Registrarme
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+
+
+
+  </ion-toolbar>
+</ion-footer>

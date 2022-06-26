@@ -1,5 +1,5 @@
 <form [formGroup]="authForm">
-  <div *ngIf="this.actionButtonText !== 'signup'" >
+  <div *ngIf="this.actionButtonText !== 'signup'" class="ion-padding" >
   <ion-avatar class="user-image" *ngIf="this.actionButtonText !== 'signup'">
       <img src="../../../../assets/avatar.png">
     </ion-avatar>
@@ -63,7 +63,12 @@
       </ion-input>
     </ion-item>
   </div>
-  <ion-button (click)="submitCredentials(authForm)" expand="block" [disabled]="!authForm.valid">
+  <ion-button (click)="submitCredentials(authForm)"
+              expand="block"
+              type="submit"
+              [disabled]="!authForm.valid" 
+              color="tertiary"
+              shape="round">
     {{ actionButtonText }}
   </ion-button>
 </form>
