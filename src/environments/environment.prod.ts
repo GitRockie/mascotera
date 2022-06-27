@@ -10,5 +10,4 @@ export const environment = {
     messagingSenderId: '239710763571',
   },
   production: false,
-  apiKey: '',
 };

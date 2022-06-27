@@ -15,7 +15,7 @@ export  interface Usuario {
 export interface Mascota {   //Datos mascota
   id: number;
   name: string;
-  foto: HTMLImageElement;
+  photo: string;
   tipo: string;  // perro, gato, loro....
   raza: string;
   sexo: boolean;

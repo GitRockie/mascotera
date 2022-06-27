@@ -11,13 +11,24 @@
       <ion-label>
         <h2><strong><u>{{mascota.name}}</u></strong></h2>
         <h5>
-          Tipo:ng  <strong>{{mascota.tipo}}</strong><br>
+          <img scr="{{mascota.photo]">
+          Tipo: <strong>{{mascota.tipo}}</strong><br>
           Raza: <strong>{{mascota.raza}}</strong><br>
+          Sexo: <strong>{{mascota.sexo}}</strong><br>
           Nace: <strong>{{mascota.fnac}}</strong><br>
           Obs:  <strong>{{mascota.obs}}</strong><br>
         </h5>
       <ion-item-divider></ion-item-divider>  
       </ion-label>
+      <div item-end>
+        <button (click)="openMascota(mascota)">
+          <ion-icon name="document-sharp" style="zoom: 1.5"></ion-icon>
+        </button>
+        <button (click)="deleteMascota(mascota)">
+          <ion-icon name="trash-sharp" style="zoom: 1.5"></ion-icon>
+        </button>
+      </div>
+
     </ion-item>
   </ion-list>
 </ion-content>

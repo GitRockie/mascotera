@@ -10,7 +10,6 @@ import { Camera, CameraResultType } from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
 
 import { SafeResourceUrl } from '@angular/platform-browser';
-import { Platform } from '@ionic/angular';
 import { ElementRef } from '@angular/core';
 import { getDownloadURL, getStorage, ref } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
@@ -74,15 +73,6 @@ export class PhotoService {
 
   }
 
-/*
-  deleteFile(fileUpload: FileUpload): void {
-    this.deleteFileDatabase(fileUpload.key)
-      .then(() => {
-        this.deleteFileStorage(fileUpload.name);
-      })
-      .catch((error) => console.log(error));
-  }
-*/
   dataURLtoFile(dataurl: string, filename: string) {
     const arr = dataurl.split(',');
     const mime = arr[0].match(/:(.*?);/)[1];
@@ -94,16 +84,6 @@ export class PhotoService {
     }
     return new File([u8arr], filename, { type: mime });
   }
-/*
-  private deleteFileDatabase(key: string): Promise<void> {
-    return this.db.list(this.basePath).remove(key);
-  }
-
-  private deleteFileStorage(name: string): void {
-    const storageRef = this.storage.ref(this.basePath);
-    storageRef.child(name).delete();
-  }
-*/
   private saveFileData(fileUpload: FileUpload): void {
     this.db.list(this.basePath).push(fileUpload);
   }

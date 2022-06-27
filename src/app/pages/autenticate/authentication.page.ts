@@ -47,8 +47,6 @@ export class AuthenticationPage implements OnInit {
     }
     if (this.url === 'google')
     {
-//      this.pageTitle = 'Google Sing In';
-//      this.actionButtonText = 'googleSing';
        this.googleSign();
     }
   }
@@ -70,8 +68,6 @@ export class AuthenticationPage implements OnInit {
       case 'reset':
         this.resetPassword(email);
         break;
-//      case 'google':
-//        this.googleSign();
     }
   }
 
@@ -92,6 +88,7 @@ export class AuthenticationPage implements OnInit {
       //      this.photo = this.photoService.addNewToGallery();
       await this.userService.createUser(user as Usuario);
       this.router.navigateByUrl('');
+      sessionStorage.setItem('id',user.id);
     } catch (error) {
       this.userService.presentToast('Usuario YA Registrado');
       console.log('Error:', error);
@@ -113,19 +110,21 @@ export class AuthenticationPage implements OnInit {
     try {
     const uSer: any = await this.auth.googleSingIn().then();
     console.log('PUser:',uSer);
+    this.user = uSer as Usuario;
+/*
     this.user.id = uSer.id;
     this.user.email = uSer.email;
     this.user.nombre = uSer.displayName;
     this.user.photo = uSer.photoURL;
+*/
     sessionStorage.setItem('user', this.user.email);
-    alert(sessionStorage.getItem('user'));
     await this.userService.createUser(this.user as Usuario);
-    this.router.navigateByUrl('tabs');
     } catch (error) {
       this.userService.presentToast('Usuario NO DISPONIBLE');
-      this.router.navigateByUrl('/login');
+      this.url = 'login';
+      this.router.navigateByUrl('login');
       console.log('Error:', error);
     }
+    this.router.navigateByUrl('tabs');
   }
 }
-

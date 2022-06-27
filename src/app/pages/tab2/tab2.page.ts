@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Mascota } from '../../models/interface';
 import { DataService } from '../../services/data.service';
+import { PhotoService } from 'src/app/services/photo.service';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import { DataService } from '../../services/data.service';
 
 export class Tab2Page implements OnInit {
   mascotaArray = [];
+  mascota: Mascota;
   constructor(
     private dataService: DataService
   ) { }
@@ -33,4 +35,7 @@ export class Tab2Page implements OnInit {
       console.log('Fetched mascota list!');
     });
   }
+  openMascota(mascota){};
+
+  deleteMascota(mascota){};
 }

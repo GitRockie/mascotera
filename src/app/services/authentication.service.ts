@@ -50,16 +50,13 @@ export class AuthenticationService {
         if (res) {
           console.log('Res:',res);
         }
-        return res.user;
+        return res;
       });
     }
    // Auth logic to run auth providers
-  async authLogin(provider: any) {
+  async authLogin(provider) {
     try {
-      const result = await this.afAuth
-        .signInWithPopup(provider);
-        console.log('Result:',result);
-      return result;
+      return await this.fireAuth.currentUser;
     } catch (error) {
       window.alert(error);
     }
