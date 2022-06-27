@@ -16,23 +16,9 @@ ion-input {
   padding: 5px;
 }
 
-
-
-.mainSlide, .mainSlide ion-slide {
-  width: 100%;
-  height: 100%;
+.user-image{
+  margin-left: 120px;
+  margin-bottom: 10px;
 }
 
-img {
-  width: 120px;
-}
 
-.pick-avatar {
-  width: 80px;
-  opacity: 0.3;
-}
-
-.pick-avatar-seleccionado {
-  transition: opacity 0.5s linear;
-  opacity: 1 !important;
-}

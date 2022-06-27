@@ -1,6 +1,6 @@
 <form [formGroup]="authForm">
   <div *ngIf="this.actionButtonText !== 'signup'" class="ion-padding" >
-  <ion-avatar class="user-image" *ngIf="this.actionButtonText !== 'signup'">
+  <ion-avatar  class="user-image" *ngIf="this.actionButtonText !== 'signup'">
       <img src="../../../../assets/av-3.png">
     </ion-avatar>
   <ion-item>
@@ -23,7 +23,7 @@
         <img [src] = "photo" (click)="userPhoto()">
     </ion-avatar>
     <ion-avatar class="user-image" *ngIf="this.actionButtonText === 'signup' && !photo">
-      <img src="../../../../assets/avatar.png" (click)="userPhoto()">
+      <img src="../../../../assets/av-6.png" (click)="userPhoto()"> 
     </ion-avatar>
     </ion-item>
     <ion-label position="stacked">Nombre</ion-label>

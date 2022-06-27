@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Mascota } from '../../models/interface';
 
 @Component({
   selector: 'app-detalle',
@@ -7,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetalleComponent implements OnInit {
 
+  @Input() id;
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log( 'ID', this.id );
+  }
 
 }
