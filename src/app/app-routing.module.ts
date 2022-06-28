@@ -34,7 +34,8 @@ const routes: Routes = [
   {
     path: 'push',
     loadChildren: () => import('./pages/push/push/push.module').then( m => m.PushPageModule)
-  }
+  },
+
 ];
 
 @NgModule({

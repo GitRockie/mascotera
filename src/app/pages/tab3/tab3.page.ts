@@ -4,6 +4,7 @@ import { UserService } from '../../services/users.service';
 import { PhotoService } from 'src/app/services/photo.service';
 import { ModalController } from '@ionic/angular';
 import { ModalPage, } from '../modal/users/users.page';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -17,6 +18,7 @@ export class Tab3Page implements OnInit {
   photo ;
   constructor(
     private userService: UserService,
+    private dataService: DataService,
     private cd: ChangeDetectorRef,
     private modalCtrl: ModalController,
     public photoService: PhotoService, ) {}
@@ -28,7 +30,8 @@ export class Tab3Page implements OnInit {
     });
  }
 
-  async openUser(user: Usuario) {
+
+ async openUser(user: Usuario) {
     const modal = await this.modalCtrl.create({
       component: ModalPage,
       componentProps: { id: user.id },

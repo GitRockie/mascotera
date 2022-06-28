@@ -1,7 +1,6 @@
 import { Injectable} from '@angular/core';
 import { Mascota } from '../models/interface';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/compat/database';
-import { rootCertificates } from 'tls';
 
 @Injectable({
   providedIn: 'root',
@@ -34,10 +33,12 @@ export class DataService {
   // Update
   updateMascota(id, mascota: Mascota) {
     return this.dataRef.update({
+      id: mascota.id,
       name: mascota.name,
       tipo: mascota.tipo,
       raza: mascota.raza,
       fnac: mascota.nacimiento,
+      photo: mascota.photo,
       obs: mascota.obs,
     });
   }

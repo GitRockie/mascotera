@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar class="ios hydrated">
+    <ion-title class="ios title-ios hydrated">Mascotas</ion-title>
+  </ion-toolbar>
+</ion-header>
+  <ion-content>
+      <ion-item>
+        <ion-label position="stacked">Nombre</ion-label>
+        <ion-input [(ngModel)]="mascota.name"></ion-input> 
+        <ion-avatar class="mascota-image" slot="start" >
+          <img *ngIf="photo" [src]="photo" (click)="mascotaPhoto()" />
+          <img *ngIf="!photo" src="../../../../assets/silueta.png" (click)="mascotaPhoto()" />
+        </ion-avatar>
+        <ion-label position="stacked">Tipo</ion-label>
+        <ion-input [(ngModel)]="mascota.tipo"></ion-input>
+        <ion-label position="stacked">Nace</ion-label>
+        <ion-input [(ngModel)]="mascota.nacimiento"></ion-input>
+        <ion-label position="stacked">Sexo</ion-label>
+        <ion-input [(ngModel)]="mascota.sexo"></ion-input>
+        <ion-label position="stacked">Celo?</ion-label>
+        <ion-input [(ngModel)]="mascota.celo"></ion-input>
+        <ion-label position="stacked">Raza</ion-label>
+        <ion-input [(ngModel)]="mascota.raza"></ion-input>
+        <ion-label position="stacked">Pelaje</ion-label>
+        <ion-input [(ngModel)]="mascota.pelaje"></ion-input>
+        <ion-label position="stacked">Obs</ion-label>
+        <ion-input [(ngModel)]="mascota.obs"></ion-input>
+        <div item-end>
+          <ion-button (click)="updatemascota()" expand="block">Update</ion-button>
+          <!-- <ion-button (click)="deletemascota()" expand="block">Delete</ion-button> -->
+          <ion-button (click)="salir()" expand="block">Volver</ion-button>
+        </div>
+      </ion-item>
+    <!-- </form> -->
+  </ion-content>

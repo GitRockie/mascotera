@@ -1,34 +1,43 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Mascotas
-    </ion-title>
+    <ion-title> Mascotas </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let mascota of mascotaArray">
+      <ion-avatar class="user-image" slot="start" *ngIf="this.mascota.photo">
+        <img [src]="this.mascota.photo" />
+      </ion-avatar>
+      <ion-avatar class="user-image" slot="start" *ngIf="!this.mascota.photo">
+        <img src="../../../assets/silueta.png" />
+      </ion-avatar>
       <ion-label>
-        <h2><strong><u>{{mascota.name}}</u></strong></h2>
-        <h5>
-          <img scr="{{mascota.photo]">
-          Tipo: <strong>{{mascota.tipo}}</strong><br>
-          Raza: <strong>{{mascota.raza}}</strong><br>
-          Sexo: <strong>{{mascota.sexo}}</strong><br>
-          Nace: <strong>{{mascota.fnac}}</strong><br>
-          Obs:  <strong>{{mascota.obs}}</strong><br>
-        </h5>
-      <ion-item-divider></ion-item-divider>  
+        <h2> 
+          <strong><u>{{mascota.name}}</u></strong> ({{mascota.tipo}})
+        </h2>
+        <ion-item>
+          <h5>
+            Sexo: <strong>{{mascota.sexo}}</strong><br />
+            Nace: <strong>{{mascota.fnac | date: 'dd-MM-yy'}}</strong><br />
+          </h5>
+        </ion-item>
       </ion-label>
+
       <div item-end>
-        <button (click)="openMascota(mascota)">
+       <button (click)="openMascota(this.mascota)">
           <ion-icon name="document-sharp" style="zoom: 1.5"></ion-icon>
         </button>
         <button (click)="deleteMascota(mascota)">
           <ion-icon name="trash-sharp" style="zoom: 1.5"></ion-icon>
         </button>
       </div>
-
     </ion-item>
   </ion-list>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="primary" (click)="openMascota(this.mascota)" >
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>

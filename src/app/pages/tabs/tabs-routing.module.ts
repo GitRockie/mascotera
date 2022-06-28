@@ -24,8 +24,9 @@ const routes: Routes = [
         redirectTo: '/tabs/tab2',
         pathMatch: 'full'
       }
-    ]
+    ],
   },
+
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -13,7 +13,7 @@ export  interface Usuario {
 
 
 export interface Mascota {   //Datos mascota
-  id: number;
+  id: string;
   name: string;
   photo: string;
   tipo: string;  // perro, gato, loro....

@@ -15,7 +15,6 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
-import { GoogleMap } from '@capacitor/google-maps';
 import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
