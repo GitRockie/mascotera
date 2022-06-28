@@ -5,18 +5,38 @@
       <ion-menu-button color="primary" menu="first"></ion-menu-button>
     </ion-buttons>
 
-   <!--<ion-buttons slot="start">
-      <ion-button (click)="showMenu()"
-                  color="primary">
-        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>--> 
+
     <ion-title color="primary">Mascotera</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button>
+    <ion-icon name="paw-outline"></ion-icon>
+  </ion-fab-button>
+
+  <ion-fab-list side="top">
+    <ion-fab-button><ion-icon color="youtube" name="logo-youtube"></ion-icon></ion-fab-button>
+    <ion-fab-button><ion-icon color="facebook" name="logo-facebook"></ion-icon></ion-fab-button>
+    <ion-fab-button><ion-icon name="logo-github"></ion-icon></ion-fab-button>
+    <ion-fab-button><ion-icon color="twitter" name="logo-twitter"></ion-icon></ion-fab-button>
+
+  </ion-fab-list>
+
+  <ion-fab-list side="start">
+    <ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
+    <ion-fab-button><ion-icon color="google" name="logo-google"></ion-icon></ion-fab-button>
+    <ion-fab-button><ion-icon color="instagram" name="logo-instagram"></ion-icon></ion-fab-button>
+    <ion-fab-button><ion-icon color="linkedin" name="logo-linkedin"></ion-icon></ion-fab-button>
+
+  </ion-fab-list>
+
+
+
+</ion-fab>
 
 
 </ion-content>

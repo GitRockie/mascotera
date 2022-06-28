@@ -34,7 +34,7 @@
     "@capacitor/status-bar": "1.0.8",
     "@capacitor/storage": "^1.2.5",
     "@codetrix-studio/capacitor-google-auth": "^3.1.4",
-    "@ionic/angular": "^6.1.8",
+    "@ionic/angular": "^6.1.11",
     "@ionic/pwa-elements": "^3.1.1",
     "firebase": "^9.8.2",
     "guard": "^0.1.2",
