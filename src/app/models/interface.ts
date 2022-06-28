@@ -109,3 +109,10 @@ export class FileUpload {
 }
 
 
+export interface Componentes {
+  icon: string;
+  name: string;
+  redirectTo: string;
+}
+
+

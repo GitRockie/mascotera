@@ -83,7 +83,7 @@ export class AuthenticationPage implements OnInit {
     try {
       await this.auth.login(email, password);
       sessionStorage.setItem('email', email);
-      this.router.navigateByUrl('tabs');
+      this.router.navigateByUrl('home');
     } catch (error) {
       this.userService.presentToast('Usuario o Password INVALIDO/INEXISTENTE');
     }

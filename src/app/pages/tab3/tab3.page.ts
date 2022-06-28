@@ -1,8 +1,8 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { Usuario, UserPhoto, } from 'src/app/models/interface';
 import { UserService } from '../../services/users.service';
 import { PhotoService } from 'src/app/services/photo.service';
-import { ModalController } from '@ionic/angular';
+import { IonList, ModalController } from '@ionic/angular';
 import { ModalPage, } from '../modal/users/users.page';
 
 @Component({
@@ -14,6 +14,7 @@ import { ModalPage, } from '../modal/users/users.page';
 export class Tab3Page implements OnInit {
 
   user: Usuario[] = [];
+  @ViewChild(IonList) ionList: IonList;
   photo ;
   constructor(
     private userService: UserService,
@@ -48,6 +49,7 @@ export class Tab3Page implements OnInit {
 
   async deleteUser(user: Usuario) {
     await this.userService.deleteUser(user);
+    this.ionList.closeSlidingItems();
   }
   async getImage(filename: string)
   {
@@ -56,5 +58,18 @@ export class Tab3Page implements OnInit {
     console.log('picture:', (await picture).toString());
     this.photo = (await picture).toString();
   }
+
+  favorite(user: any) {
+    console.log(user);
+    this.ionList.closeSlidingItems();
+  }
+
+  share(user: any) {
+    console.log(user);
+    this.ionList.closeSlidingItems();
+  }
+
+
+
 
 }

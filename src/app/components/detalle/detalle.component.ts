@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Mascota } from '../../models/interface';
 
 @Component({
@@ -8,12 +9,23 @@ import { Mascota } from '../../models/interface';
 })
 export class DetalleComponent implements OnInit {
 
-  @Input() id;
+  favourite: boolean = false;
 
-  constructor() { }
+  constructor( private modalCtrl: ModalController) { }
 
   ngOnInit() {
-    console.log( 'ID', this.id );
+    
   }
+
+  closeNoArguments() {
+    this.modalCtrl.dismiss();
+  }
+
+  
+  onClick() {
+    this.favourite = !this.favourite;
+  }
+
+  
 
 }

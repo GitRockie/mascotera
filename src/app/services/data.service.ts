@@ -1,5 +1,6 @@
 import { Injectable} from '@angular/core';
-import { Mascota } from '../models/interface';
+import { HttpClient } from '@angular/common/http';
+import { Componentes, Mascota } from '../models/interface';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/compat/database';
 import { rootCertificates } from 'tls';
 
@@ -10,7 +11,8 @@ import { rootCertificates } from 'tls';
 export class DataService {
   dataList: AngularFireList<any>;
   dataRef: AngularFireObject<any>;
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFireDatabase,
+             private http: HttpClient) {}
   // Create
   createMascota(mascota: Mascota ) {
     return this.dataList.push({
@@ -46,4 +48,10 @@ export class DataService {
     this.dataRef = this.db.object('/mascotas/' + id);
     this.dataRef.remove();
   }
+
+  getMenuOpt() {
+    return this.http.get<Componentes[]>('/assets/data/menu-options.json');
+  }
+
+
 }

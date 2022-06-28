@@ -38,7 +38,7 @@
           <ion-avatar >
             <img src="/assets/av-4.png">
           </ion-avatar>
-          <ion-label>Esperanza G.</ion-label>
+          <ion-label>Claudia G.</ion-label>
         </ion-chip>
       </ion-card-subtitle>
           
@@ -52,7 +52,9 @@
 
       La playa de los perros nos encanta mucho. Ahí nos verás cada dia. 
     </ion-card-content>
+
   </ion-card>
+
 
   <ion-card>
     <ion-item color="primary">
@@ -61,11 +63,33 @@
     </ion-item>
 
     <ion-card-content>
-      <a href="https://www.barcelona.cat/ca/que-pots-fer-a-bcn/banys-i-platges/area-de-gossos-de-la-platja-de-llevant" target="_blank">Platja de Llevant</a>
+      <img src="/assets/map-playa-gos.png">
     </ion-card-content>
+
 
   </ion-card>
 
+<ion-row class="ion-padding">
+  
+    <ion-buttons >
+
+      <ion-button (click)="closeNoArguments()" color="primary" shape="round" fill="outline">
+        Volver
+      </ion-button>
+
+      <ion-button (click)="onClick()" color="danger">
+        <ion-icon slot="icon-only"
+                  [name]="favourite ? 'heart' : 'heart-outline'">
+  
+        </ion-icon>
+        
+      </ion-button>
+    
+
+    </ion-buttons>
+  
+</ion-row>
+  
 
 
 

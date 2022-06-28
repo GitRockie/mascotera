@@ -5,9 +5,15 @@ import { AuthenticationGuard } from './services/canactivate.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'push', pathMatch: 'full' },
   {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
+    canActivate: [AuthenticationGuard],
+  },
+  {
     path: 'tabs',
     loadChildren: () => import('./pages/tabs/tabs.module').then((m) => m.TabsPageModule),
     canActivate: [AuthenticationGuard],
+  
   },
   {
     path: 'login',
@@ -35,10 +41,7 @@ const routes: Routes = [
     path: 'push',
     loadChildren: () => import('./pages/push/push/push.module').then( m => m.PushPageModule)
   },
-  {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
-  }
+
 
 ];
 
