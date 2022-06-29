@@ -7,7 +7,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Photo } from '@capacitor/camera';
 import { UserService } from 'src/app/services/users.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { FormBuilder, FormGroup } from '@angular/forms';
+
 
 
 @Component({
@@ -36,16 +36,13 @@ export class MascotasPage implements OnInit {
     public userService: UserService,
     public modalMCtrl: ModalController,
     ) { }
-/*
+
   ngOnInit() {
     this.mascota = this.dataService.getMascota(this.mascota.id);
     console.log('Id',this.mascota.id);
     this.getImage(this.mascota.id );
   }
-*/
-  ngOnInit() {
-    this.mascota = this.dataService.getMascota(this.id).snapshotChanges();
-  }
+
 
   async deletemascota() {
     this.pageText = 'Borrar Mascota';

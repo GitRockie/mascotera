@@ -21,6 +21,7 @@ export interface Mascota {   //Datos mascota
   sexo: boolean;
   pelaje: string;
   chip: string;
+  celo: boolean;
   pedigree: Pedigree;
   propietario: number; // id propietario
   nacimiento: Date;
