@@ -20,10 +20,10 @@
   <div *ngIf="this.actionButtonText === 'signup'" >
     <ion-item>
       <ion-avatar *ngIf="photo">
-        <img [src] = "photo" (click)="userPhoto()">
+        <img [src] = "photo" >
     </ion-avatar>
     <ion-avatar class="user-image" *ngIf="this.actionButtonText === 'signup' && !photo">
-      <img src="../../../../assets/av-6.png" (click)="userPhoto()"> 
+      <img src="../../../../assets/av-6.png"> 
     </ion-avatar>
     </ion-item>
     <ion-label position="stacked">Nombre</ion-label>

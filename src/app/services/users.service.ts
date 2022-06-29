@@ -19,6 +19,10 @@ export class UserService {
   ) { }
 
   createUser(users: Usuario) {
+    if (!users.photo)
+    {
+      users.photo = '';
+    }
   const userRef = collection(this.firestore, 'users');
   return addDoc(userRef, users);
 }

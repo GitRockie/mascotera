@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService, } from '../../services/authentication.service';
 import { UserService } from 'src/app/services/users.service';
-import { Usuario, UserPhoto } from 'src/app/models/interface';
+import { Usuario, FileUpload  } from 'src/app/models/interface';
 import { PhotoService } from 'src/app/services/photo.service';
 
 import { Platform } from '@ionic/angular';
+import { Photo } from '@capacitor/camera';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,10 +17,12 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['./authentication.page.scss'],
 })
 export class AuthenticationPage implements OnInit {
+  @Input() id: string;
   url: string; // The URL we're at: login, signup, or reset.
   pageTitle = 'Sign In';
   actionButtonText = 'Sign In';
   user: Usuario;
+  image: Photo;
   photo: any;
   disable = false;
 
@@ -92,13 +95,26 @@ export class AuthenticationPage implements OnInit {
   async signup(user: any) {
     console.log('User:', user);
     try {
-      await this.auth.signup(user.email, user.password);
+      const credentials = await this.auth.signup(user.email, user.password);
+      user.id = credentials.user.uid;
+      console.log('UP',user);
+/*
+      if (typeof(this.photo) != 'string')
+      {
+        const filename =  user.id + '.png';
+        const file = this.photoService.dataURLtoFile(this.image.dataUrl,filename);
+        const fileUpload = new FileUpload(file);
+        this.photoService.pushFileToStorage(fileUpload);
+        user.photo = (await this.photoService.getImages(filename)).toString();
+      }
+*/
       //      this.photo = this.photoService.addNewToGallery();
       await this.userService.createUser(user as Usuario);
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl('login');
     } catch (error) {
-      this.userService.presentToast('Usuario YA Registrado');
+      this.userService.presentToast('ERROR en el Registro');
       console.log('Error:', error);
+      this.router.navigateByUrl('login');
     }
   }
 

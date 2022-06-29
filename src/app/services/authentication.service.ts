@@ -8,9 +8,7 @@ import { GoogleAuth, } from '@codetrix-studio/capacitor-google-auth';
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthenticationService {
-
   constructor(private readonly auth: Auth, ) {}
 
   getUser(): User {

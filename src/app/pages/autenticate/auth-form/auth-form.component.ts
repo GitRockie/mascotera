@@ -68,7 +68,7 @@ export class AuthFormComponent implements OnInit {
         photo: this.photo,
       };
       this.formSubmitted.emit(credentials);
-      if (this.image) {
+/*      if (this.image) {
         const filename = this.user.id + '.png';
         const file = this.photoService.dataURLtoFile(
           this.image.dataUrl,
@@ -77,6 +77,7 @@ export class AuthFormComponent implements OnInit {
         const fileUpload = new FileUpload(file);
         this.photoService.pushFileToStorage(fileUpload);
       }
+*/
     }
   }
   async userPhoto() {
