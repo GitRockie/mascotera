@@ -9,20 +9,20 @@ import { DetalleComponent } from 'src/app/components/detalle/detalle.component';
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss'],
 })
-
 export class Tab2Page implements OnInit {
   mascota: Mascota;
   mascotaArray = [];
-  constructor( private modalCtrl: ModalController,
-               private dataService: DataService
-  ) { }
+  constructor(
+    private modalCtrl: ModalController,
+    private dataService: DataService
+  ) {}
 
   ngOnInit() {
     this.fetchMascota();
     const mascotaRes = this.dataService.getMascotaList();
-    mascotaRes.snapshotChanges().subscribe(res => {
+    mascotaRes.snapshotChanges().subscribe((res) => {
       this.mascotaArray = [];
-      res.forEach(item => {
+      res.forEach((item) => {
         const a = item.payload.toJSON();
         // eslint-disable-next-line @typescript-eslint/dot-notation
         a['$key'] = item.key;
@@ -32,23 +32,19 @@ export class Tab2Page implements OnInit {
   }
 
   fetchMascota() {
-    this.dataService.getMascotaList().valueChanges().subscribe(res => {
-      console.log('Fetched mascota list!');
-    });
+    this.dataService
+      .getMascotaList()
+      .valueChanges()
+      .subscribe((res) => {
+        console.log('Fetched mascota list!');
+      });
   }
 
-  async mostrarDetalles( id: string ){
-    
+  async mostrarDetalles(id: string) {
     const modal = await this.modalCtrl.create({
       component: DetalleComponent,
-      componentProps: {
-        id
-      }
-    
+      componentProps: {id,},
     });
-    
     modal.present();
   }
-
-  
 }

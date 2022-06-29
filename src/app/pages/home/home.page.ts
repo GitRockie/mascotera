@@ -3,12 +3,12 @@ import { MenuController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Componentes } from 'src/app/models/interface';
 import { DataService } from 'src/app/services/data.service';
-
-import SwiperCore, { Autoplay, Keyboard, Pagination, Scrollbar, Zoom, EffectFade, EffectCube, EffectFlip, EffectCreative, EffectCards, EffectCoverflow  } from 'swiper';
+import SwiperCore, { Autoplay, Keyboard, Pagination, Scrollbar, Zoom, EffectFade, EffectCube,
+  EffectFlip, EffectCreative, EffectCards, EffectCoverflow,} from 'swiper';
 import { IonicSlides } from '@ionic/angular';
 
-SwiperCore.use([Autoplay, Keyboard, Pagination, Scrollbar, Zoom, EffectFade, IonicSlides, EffectCube, EffectFlip, EffectCreative, EffectCards, EffectCoverflow]);
-
+SwiperCore.use([ Autoplay, Keyboard, Pagination, Scrollbar, Zoom, EffectFade, IonicSlides,
+  EffectCube, EffectFlip, EffectCreative, EffectCards, EffectCoverflow,]);
 
 @Component({
   selector: 'app-home',
@@ -16,13 +16,13 @@ SwiperCore.use([Autoplay, Keyboard, Pagination, Scrollbar, Zoom, EffectFade, Ion
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  componentes: Observable<Componentes[]>;
+  textSearch = '';
 
-  componentes: Observable<Componentes[]>
-  textSearch: string = '';
-  
-
-  constructor( private menuCtrl: MenuController,
-    private dataService: DataService ) { }
+  constructor(
+    private menuCtrl: MenuController,
+    private dataService: DataService
+  ) {}
 
   ngOnInit() {
     this.componentes = this.dataService.getMenuOpt();
@@ -32,11 +32,7 @@ export class HomePage implements OnInit {
     this.menuCtrl.open('first');
   }
 
-  onSearchChange( event: any ) {
+  onSearchChange(event: any) {
     this.textSearch = event.detail.value;
   }
-  
-
-
-
 }

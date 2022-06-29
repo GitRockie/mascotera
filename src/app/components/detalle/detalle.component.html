@@ -1,57 +1,45 @@
 <ion-header>
   <ion-toolbar>
-
-
- 
-
     <ion-title color="primary">Mascota</ion-title>
-
     <ion-buttons slot="end">
       <ion-avatar>
-        <img src="../../../assets/dog-surf.jpg">
+        <img src="../../../assets/dog-surf.jpg" />
       </ion-avatar>
     </ion-buttons>
-
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
   <ion-card mode="ios">
-
     <ion-card-header>
-      
-   
-      <ion-card-subtitle>Acompaña:
+      <ion-card-subtitle
+        >Acompaña:
         <ion-chip color="danger" outline="true">
-  
-          <ion-avatar >
-            <img src="/assets/avatar-roman.jpg">
+          <ion-avatar>
+            <img src="/assets/avatar-roman.jpg" />
           </ion-avatar>
           <ion-label>Roman K.</ion-label>
         </ion-chip>
         <ion-chip color="success" outline="true">
-  
-          <ion-avatar >
-            <img src="/assets/av-4.png">
+          <ion-avatar>
+            <img src="/assets/av-4.png" />
           </ion-avatar>
           <ion-label>Claudia G.</ion-label>
         </ion-chip>
       </ion-card-subtitle>
-          
-      <ion-card-title>Bambu <ion-icon name="male-outline"></ion-icon></ion-card-title>
-      
+
+      <ion-card-title
+        >Bambu <ion-icon name="male-outline"></ion-icon
+      ></ion-card-title>
     </ion-card-header>
 
-    
     <ion-card-content>
-      Yo soy Bambu, no puedo sin agua. Si me tiras la pelota muy lejos al mar, pues, ¡cojemos el surf y pillamos la ola! <br>
+      Yo soy Bambu, no puedo sin agua. Si me tiras la pelota muy lejos al mar,
+      pues, ¡cojemos el surf y pillamos la ola! <br />
 
-      La playa de los perros nos encanta mucho. Ahí nos verás cada dia. 
+      La playa de los perros nos encanta mucho. Ahí nos verás cada dia.
     </ion-card-content>
-
   </ion-card>
-
 
   <ion-card>
     <ion-item color="primary">
@@ -60,35 +48,28 @@
     </ion-item>
 
     <ion-card-content>
-      <img src="/assets/map-playa-gos.png">
+      <img src="/assets/map-playa-gos.png" />
     </ion-card-content>
-
-
   </ion-card>
 
-<ion-row class="ion-padding">
-  
-    <ion-buttons >
-
-      <ion-button (click)="closeNoArguments()" color="primary" shape="round" fill="outline">
+  <ion-row class="ion-padding">
+    <ion-buttons>
+      <ion-button
+        (click)="closeNoArguments()"
+        color="primary"
+        shape="round"
+        fill="outline"
+      >
         Volver
       </ion-button>
 
       <ion-button (click)="onClick()" color="danger">
-        <ion-icon slot="icon-only"
-                  [name]="favourite ? 'heart' : 'heart-outline'">
-  
+        <ion-icon
+          slot="icon-only"
+          [name]="favourite ? 'heart' : 'heart-outline'"
+        >
         </ion-icon>
-        
       </ion-button>
-    
-
     </ion-buttons>
-  
-</ion-row>
-  
-
-
-
-
+  </ion-row>
 </ion-content>

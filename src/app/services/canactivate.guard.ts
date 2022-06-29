@@ -11,7 +11,7 @@ export class AuthenticationGuard implements CanActivate {
   canActivate(): Promise<boolean | UrlTree> {
     return new Promise((resolve, reject) => {
       onAuthStateChanged(this.auth, (user) => {
-        if (user && (sessionStorage.getItem('email').length > 0 
+        if (user && (sessionStorage.getItem('email').length > 0
         || sessionStorage.getItem('user').length > 0)) {
           resolve(true);
         } else {

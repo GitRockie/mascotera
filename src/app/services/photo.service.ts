@@ -1,13 +1,7 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFireDatabase,
-  AngularFireList,
-} from '@angular/fire/compat/database';
-import {
-  AngularFireStorage,
-  AngularFireStorageReference,
-  AngularFireUploadTask,
-} from '@angular/fire/compat/storage';
+import { AngularFireDatabase, AngularFireList,} from '@angular/fire/compat/database';
+import { AngularFireStorage, AngularFireStorageReference,
+   AngularFireUploadTask,} from '@angular/fire/compat/storage';
 
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -39,8 +33,6 @@ export class PhotoService {
   ) {}
 
   public async addNewPhoto() {
-    // Take a photo
-    //    if (!Capacitor.isPluginAvailable('Camera') || (this.isDesktop && type === 'gallery')) {
     if (!Capacitor.isPluginAvailable('Camera')) {
       this.filePickerRef.nativeElement.click();
       return;
@@ -84,7 +76,6 @@ export class PhotoService {
     return (await path).toString();
 
   }
-
 
   deleteFile(fileUpload: FileUpload): void {
     this.deleteFileDatabase(fileUpload.key)

@@ -1,15 +1,13 @@
-<app-header title="Mapa">
-
-  <ion-item *ngIf='posLat !== 0'>
-   <h3>Lat: {{this.posLat}}       -      Long: {{this.posLong}}  </h3>
-   </ion-item>
-</app-header>
+<app-header title="Mapa"></app-header>
+<ion-item *ngIf="posLat !== 0">
+  <h6>Lat: {{this.posLat}} - Long: {{this.posLong}}</h6>
+</ion-item>
 <ion-item>
   <capacitor-google-maps #map></capacitor-google-maps>
 </ion-item>
 <div item-end>
-  <ion-button size="small" position="stacked" color="primary" (click)="createMap()">
-    Visualizar Mapa
+  <ion-button size="small" position="stacked" color="primary" (click)="createMap()" >
+    Parques Cercanos
   </ion-button>
   <ion-button *ngIf="this.disponible" size="small" position="stacked" colort="secondary" (click)="geoShare()">
     Compartir Ubicacion

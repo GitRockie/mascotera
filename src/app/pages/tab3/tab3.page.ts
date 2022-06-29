@@ -12,9 +12,8 @@ import { ModalPage, } from '../modal/users/users.page';
 })
 
 export class Tab3Page implements OnInit {
-
-  user: Usuario[] = [];
   @ViewChild(IonList) ionList: IonList;
+  user: Usuario[] = [];
   photo ;
   constructor(
     private userService: UserService,
@@ -68,8 +67,4 @@ export class Tab3Page implements OnInit {
     console.log(user);
     this.ionList.closeSlidingItems();
   }
-
-
-
-
 }
