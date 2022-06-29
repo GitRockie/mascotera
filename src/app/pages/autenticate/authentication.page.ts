@@ -133,7 +133,7 @@ export class AuthenticationPage implements OnInit {
     try {
     this.user = await this.auth.googleSingin();
     sessionStorage.setItem('user', this.user.nombre);
-    alert(sessionStorage.getItem('user'));
+//    alert(sessionStorage.getItem('user'));
     await this.userService.createUser(this.user as Usuario);
     this.router.navigateByUrl('tabs');
     } catch (error) {
