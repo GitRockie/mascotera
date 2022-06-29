@@ -34,7 +34,11 @@ const routes: Routes = [
   {
     path: 'push',
     loadChildren: () => import('./pages/push/push/push.module').then( m => m.PushPageModule)
+  },  {
+    path: 'mascotas',
+    loadChildren: () => import('./pages/modal/mascotas/mascotas.module').then( m => m.MascotasPageModule)
   },
+
 
 ];
 

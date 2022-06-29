@@ -8,16 +8,12 @@ import { Photo } from '@capacitor/camera';
 import { UserService } from 'src/app/services/users.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 
-
-
 @Component({
-  selector: 'app-modal',
+  selector: 'app-mascotas',
   templateUrl: './mascotas.page.html',
   styleUrls: ['./mascotas.page.scss'],
 })
-
 export class MascotasPage implements OnInit {
-
   @Input() id: string;
   @ViewChild('filePicker', { static: false })
   filePickerRef: ElementRef<HTMLInputElement>;
@@ -103,3 +99,4 @@ export class MascotasPage implements OnInit {
     this.modalMCtrl.dismiss();
   }
 }
+
