@@ -10,33 +10,112 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
 
+  <ion-searchbar animated
+  placeholder="Busca i troba"
+  inputmode="text"
+  debounce="250"
+  (ionChange)="onSearchChange( $event )">
+</ion-searchbar>
+
+  <swiper  [autoplay]="false"  [scrollbar]="true" [zoom]="false">
+    <ng-template swiperSlide> 
+      <ion-card>
+        <img src="/assets/mujer-cuida.jpg">
+          <ion-card-content>
+            <h2 class=" p-8">Etsem creant una aplicació que amb Tú cuida la teva mascota! <br> Facilitar i millorar la vida - és el proposit principal de la Mascotera App. </h2> 
+          </ion-card-content>
+      </ion-card>
+    </ng-template>
+
+    <ng-template swiperSlide>
+       <ion-card>
+      <img src="/assets/vet-visit.jpg">
+        <ion-card-content>
+          <ion-list>
+            <ion-item class="custom-checkbox"
+                   >
+              <ion-checkbox color="primary"
+                            slot="end"
+                            ></ion-checkbox>
+              <ion-label>Gestiona les visites al veterinari 
+                        </ion-label>
+            </ion-item>
+
+            <ion-item class="custom-checkbox"
+            >
+              <ion-checkbox color="success"
+                    slot="end"
+                    ></ion-checkbox>
+             <ion-label>Rep notificacions <br> sobre les properes vacunes
+                </ion-label>
+             </ion-item>
+                              
+          </ion-list>
   
-<ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button>
-    <ion-icon name="paw-outline"></ion-icon>
-  </ion-fab-button>
+      
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
 
-  <ion-fab-list side="top">
-    <ion-fab-button><ion-icon color="youtube" name="logo-youtube"></ion-icon></ion-fab-button>
-    <ion-fab-button><ion-icon color="facebook" name="logo-facebook"></ion-icon></ion-fab-button>
-    <ion-fab-button><ion-icon name="logo-github"></ion-icon></ion-fab-button>
-    <ion-fab-button><ion-icon color="twitter" name="logo-twitter"></ion-icon></ion-fab-button>
+    <ng-template swiperSlide> 
+        <ion-card>
+          <img src="/assets/dog-surf.jpg">
+          <ion-card-content>
+            <ion-list>
+              <ion-item class="custom-checkbox"
+                      >
+                <ion-checkbox checked="true" color="warning"
+                              slot="end"
+                              ></ion-checkbox>
+                <ion-label>Planifica les vacances <br> i surtides amb la teva mascota
+                          </ion-label>
+              </ion-item>
+  
+              <ion-item class="custom-checkbox"
+              >
+                <ion-checkbox checked="true" color="danger"
+                      slot="end"
+                     ></ion-checkbox>
+               <ion-label>Troba les amigues noves <br> i els amics nous
+                  </ion-label>
+               </ion-item>
+                                
+            </ion-list>
+          </ion-card-content>
+      </ion-card>
+    </ng-template>
+ 
+  </swiper>
+ 
 
-  </ion-fab-list>
+ 
+  
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="paw-outline"></ion-icon>
+    </ion-fab-button>
 
-  <ion-fab-list side="start">
-    <ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
-    <ion-fab-button><ion-icon color="google" name="logo-google"></ion-icon></ion-fab-button>
-    <ion-fab-button><ion-icon color="instagram" name="logo-instagram"></ion-icon></ion-fab-button>
-    <ion-fab-button><ion-icon color="linkedin" name="logo-linkedin"></ion-icon></ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button><ion-icon color="youtube" name="logo-youtube"></ion-icon></ion-fab-button>
+      <ion-fab-button><ion-icon color="facebook" name="logo-facebook"></ion-icon></ion-fab-button>
+      <ion-fab-button><ion-icon name="logo-github"></ion-icon></ion-fab-button>
+      <ion-fab-button><ion-icon color="twitter" name="logo-twitter"></ion-icon></ion-fab-button>
 
-  </ion-fab-list>
+    </ion-fab-list>
+
+    <ion-fab-list side="start">
+      <ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
+      <ion-fab-button><ion-icon color="google" name="logo-google"></ion-icon></ion-fab-button>
+      <ion-fab-button><ion-icon color="instagram" name="logo-instagram"></ion-icon></ion-fab-button>
+      <ion-fab-button><ion-icon color="linkedin" name="logo-linkedin"></ion-icon></ion-fab-button>
+
+    </ion-fab-list>
 
 
 
-</ion-fab>
+  </ion-fab>
 
 
 </ion-content>
