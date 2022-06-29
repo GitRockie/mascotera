@@ -31,7 +31,7 @@ const routes: Routes = [
     path: 'reset',
     loadChildren: () => import('./pages/autenticate/authentication.module').then((m) => m.AuthenticationPageModule),
   },
-  { path: '**', redirectTo: 'login' },
+  { path: '**', redirectTo: 'home' },
   {
     path: 'users',
     loadChildren: () => import('./pages/modal/users/users.module').then( m => m.UsersPageModule),

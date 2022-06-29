@@ -4,6 +4,26 @@
       "icon": "people-outline",
       "name": "Perfills",
       "redirectTo": "/tabs/tab2"
+    },
+    {
+      "icon": "happy-outline",
+      "name": "Servicios",
+      "redirectTo": "/services"
+    },
+    {
+      "icon": "fitness-outline",
+      "name": "Salud",
+      "redirectTo": "/veterinario"
+    },
+    {
+      "icon": "medkit-outline",
+      "name": "Veterinario",
+      "redirectTo": "/veterinario"
+    },
+    {
+      "icon": "wallet-outline",
+      "name": "Gastos",
+      "redirectTo": "/analisis"
     }
 
 ]
