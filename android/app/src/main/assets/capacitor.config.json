@@ -20,19 +20,19 @@
 			"forceCodeForRefreshToken": true
 		},
 		"SplashScreen": {
-			"launchShowDuration": 4000,
+			"launchShowDuration": 5000,
 			"launchAutoHide": true,
 			"backgroundColor": "#ffffff",
 			"androidSplashResourceName": "splash",
-			"androidScaleType": "CENTER_CROP",
+			"androidScaleType": "FIT_CENTER",
 			"showSpinner": true,
-			"androidSpinnerStyle": "large",
+			"androidSpinnerStyle": "smallInverse",
 			"iosSpinnerStyle": "small",
 			"spinnerColor": "#999999",
 			"splashFullScreen": true,
 			"splashImmersive": true,
 			"layoutName": "launch_screen",
-			"useDialog": false
+			"useDialog": true
 		}
 	}
 }

@@ -9,23 +9,23 @@ import { Mascota } from '../../models/interface';
 })
 export class DetalleComponent implements OnInit {
 
-  favourite: boolean = false;
+  favourite = false;
 
   constructor( private modalCtrl: ModalController) { }
 
   ngOnInit() {
-    
+
   }
 
   closeNoArguments() {
     this.modalCtrl.dismiss();
   }
 
-  
+
   onClick() {
     this.favourite = !this.favourite;
   }
 
-  
+
 
 }

@@ -1,4 +1,4 @@
-package io.home.mascotera;
+package com.home.mascotera;
 
 import com.getcapacitor.BridgeActivity;
 

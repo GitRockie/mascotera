@@ -24,7 +24,7 @@ export class AuthenticationPage implements OnInit {
   user: Usuario;
   image: Photo;
   photo: any;
-  disable = false;
+//  disable = false;
 
   constructor(
     private readonly router: Router,
@@ -37,8 +37,8 @@ export class AuthenticationPage implements OnInit {
   // eslint-disable-next-line @angular-eslint/contextual-lifecycle
   ngOnInit(): void {
 
-    if (this.platform.is('desktop')) { this.disable = true; };
-
+//    if (this.platform.is('desktop')) { this.disable = true; };
+    sessionStorage.clear();
     this.url = this.router.url.substring(1);
     //    console.log('url:', this.url);
     if (this.url === 'login') {
@@ -140,6 +140,10 @@ export class AuthenticationPage implements OnInit {
       this.userService.presentToast('Usuario NO DISPONIBLE');
       console.log('Error:', error);
     }
+  }
+  logout() {
+    sessionStorage.removeItem('');
+    this.router.navigateByUrl('tabs');
   }
 
 }

@@ -24,6 +24,11 @@
       "icon": "wallet-outline",
       "name": "Gastos",
       "redirectTo": "/analisis"
+    },
+    {
+      "icon": "people-outline",
+      "name": "Logout",
+      "redirectTo": "/login"
     }
 
 ]

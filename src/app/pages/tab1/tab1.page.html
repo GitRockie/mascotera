@@ -1,8 +1,9 @@
 <app-header title="Mapa"></app-header>
-<ion-item *ngIf="posLat !== 0">
-  <h6>Lat: {{this.posLat}} - Long: {{this.posLong}}</h6>
-</ion-item>
-<ion-item>
+  <ion-header *ngIf="posLat !== 0">
+    <h6>Lat: {{this.posLat}} - Long: {{this.posLong}}</h6>
+  </ion-header>
+
+<ion-item >
   <capacitor-google-maps #map></capacitor-google-maps>
 </ion-item>
 <div item-end>

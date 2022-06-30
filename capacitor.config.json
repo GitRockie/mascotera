@@ -1,5 +1,5 @@
 {
-  "appId": "io.home.mascotera",
+  "appId": "com.home.mascotera",
   "appName": "Mascotera",
   "bundledWebRuntime": false,
   "npmClient": "npm",

@@ -18,6 +18,8 @@ import { GoogleMap } from '@capacitor/google-maps';
 import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

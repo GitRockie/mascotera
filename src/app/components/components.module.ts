@@ -7,7 +7,7 @@ import { DetalleComponent } from './detalle/detalle.component';
 
 
 @NgModule({
-  
+
   declarations: [
     HeaderComponent,
     DetalleComponent
@@ -19,7 +19,7 @@ import { DetalleComponent } from './detalle/detalle.component';
   exports: [
     HeaderComponent,
     DetalleComponent,
-    
+
   ]
 })
 export class ComponentsModule { }

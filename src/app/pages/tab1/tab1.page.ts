@@ -6,6 +6,8 @@ import { Share } from '@capacitor/share';
 import { UserService, } from 'src/app/services/users.service';
 import { Platform } from '@ionic/angular';
 
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './tab1.page.html',
@@ -27,13 +29,13 @@ export class Tab1Page implements OnInit {
      this.requestPermissions();
     if (this.disponible) {
       this.getCurrentCoordinate();
-      this.createMap();
+//      this.createMap();
     }
   }
 
   async requestPermissions() {
-    console.log('Platform:', this.platform.platforms());
-    if (!this.platform.is('hybrid')) {
+    console.log('Platform:', this.platform.is('desktop'));
+    if (!this.platform.is('desktop')) {
       const permResult =  await Geolocation.requestPermissions();
       this.disponible = (permResult !== null);
       if (!this.disponible) {
@@ -74,19 +76,21 @@ export class Tab1Page implements OnInit {
       dialogTitle: 'Compartir Ubicacion',
     });
   }
+
   async createMap() {
-     this.newMap = await GoogleMap.create({
-      id: 'my-map',
-      element: this.mapRef.nativeElement,
-      apiKey: '', //environment.firebase.apiKey,
-      config: {
-        center: {
-          lat: this.posLat,
-          lng: this.posLong,
-        },
-        zoom: 15,
-      },
-    });
+//    const mapElement = document.getElementById('my-map');
+      this.newMap = await GoogleMap.create({
+       id: 'my-map',
+       element: this.mapRef.nativeElement,
+       apiKey: '', //environment.firebase.apiKey,
+       config: {
+         center: {
+           lat: this.posLat,
+           lng: this.posLong,
+         },
+         zoom: 15,
+       },
+     });
     await this.newMap.enableClustering();
     const markerId = await this.newMap.addMarker({
       coordinate: {

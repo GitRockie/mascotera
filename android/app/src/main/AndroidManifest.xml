@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.home.mascotera">
+    package="com.home.mascotera">
     <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBgVMN0qZA3F0yeLm6AewnXe7weyBd8dTU"/>
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -20,7 +20,7 @@
 
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
-            android:name="io.home.mascotera.MainActivity"
+            android:name="com.home.mascotera.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBarLaunch"
             android:launchMode="singleTask">
